@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d32">
+  <meta name="description" content="Diarista Fácil — encontre diaristas para sua casa ou apartamento.">
+  <title>Diarista Fácil</title>
+  <style>
+:root{--forest:#123d32;--forest2:#1b5745;--lime:#d7f36a;--cream:#f7f8f3;--paper:#fff;--ink:#1c2c26;--muted:#68766f;--line:#e3e9e3;--soft:#edf4ed;--shadow:0 18px 50px rgba(18,61,50,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}button,input,select{font:inherit}button{cursor:pointer}.topbar{height:82px;padding:0 max(5vw,24px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:11px;color:var(--forest);text-decoration:none}.brand-mark{display:grid;place-items:center;width:42px;height:42px;background:var(--lime);border-radius:14px;font-size:25px;font-weight:800}.brand strong{display:block;font-size:17px;letter-spacing:-.5px}.brand small{display:block;color:var(--muted);font-size:11px}.topbar nav{display:flex;gap:6px}.nav-link{border:0;background:transparent;color:#526158;padding:11px 15px;border-radius:12px;font-weight:650;font-size:13px}.nav-link:hover,.nav-link.active{background:var(--soft);color:var(--forest)}.menu-toggle{display:none;border:0;background:var(--soft);border-radius:10px;padding:9px 12px;font-size:20px}.view{display:none;max-width:1180px;margin:0 auto;padding:38px 28px 70px}.view.active{display:block}.hero{min-height:460px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:35px;padding:35px 0 52px}.hero-copy{padding:12px 0}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--forest2);font-size:10px;font-weight:800;letter-spacing:1.5px}.dot{width:7px;height:7px;background:#6eaf76;border-radius:50%}h1,h2,h3,p{margin-top:0}.hero h1,.page-heading h1{font-size:clamp(38px,5vw,61px);letter-spacing:-2.7px;line-height:1.04;margin:20px 0}.hero h1 em{font-style:normal;color:#51846a}.hero-copy>p,.page-heading>p{max-width:510px;color:var(--muted);font-size:16px}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:750;font-size:13px;transition:transform .15s,box-shadow .15s}.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px #123d3217}.btn-primary{background:var(--forest);color:#fff}.btn-primary:hover,.btn-dark:hover{background:var(--forest2)}.btn-light{background:#fff;color:var(--forest);border:1px solid var(--line)}.btn-dark{background:var(--lime);color:var(--forest)}.btn span{padding-left:10px}.full{width:100%}.trust-row{display:flex;gap:15px;flex-wrap:wrap;margin-top:26px;color:#66766d;font-size:11px;font-weight:600}.hero-art{height:390px;border-radius:30px;background:#e5eee3;position:relative;overflow:hidden}.sun{position:absolute;right:48px;top:35px;width:85px;height:85px;border-radius:50%;background:#d7f36a}.room{position:absolute;left:10%;right:10%;bottom:0;height:78%;background:#f9f5e9;border-radius:14px 14px 0 0;box-shadow:inset 0 0 0 8px #dce8d8}.window{position:absolute;top:27px;left:28px;width:105px;height:112px;border:8px solid #fff;background:#c4dfd2;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px}.window i{background:#a3c7b7}.sofa{position:absolute;left:23%;bottom:58px;width:54%;height:96px;border-radius:17px 17px 7px 7px;background:#80a58b;border-bottom:12px solid #4d795e}.sofa span{position:absolute;top:10px;left:10px;width:44%;height:58px;background:#a8c1a9;border-radius:10px}.sofa span+span{left:auto;right:10px;background:#9ab79d}.table{position:absolute;left:35%;bottom:36px;width:34%;height:22px;background:#b9875d;border-radius:50%;box-shadow:0 7px 0 #916342}.rug{position:absolute;bottom:0;left:17%;width:66%;height:38px;background:#d8c8a8;border-radius:50%}.plant{position:absolute;z-index:2;color:#4e8964;font-size:60px}.plant-one{left:6%;bottom:50px}.vase{position:absolute;right:9%;bottom:45px;color:#c38e65;font-size:27px}.floating-card{position:absolute;right:18px;bottom:23px;display:flex;align-items:center;gap:10px;padding:13px 16px;background:#fff;border-radius:16px;box-shadow:var(--shadow)}.float-icon{display:grid;place-items:center;background:var(--lime);width:33px;height:33px;border-radius:10px;color:var(--forest);font-weight:900}.floating-card strong,.floating-card small{display:block}.floating-card strong{font-size:12px}.floating-card small{font-size:10px;color:var(--muted)}.section-heading{text-align:center;margin:20px 0 28px}.section-heading h2,.bottom-cta h2{font-size:30px;letter-spacing:-1px;margin:8px 0}.section-heading p,.bottom-cta p{color:var(--muted);font-size:13px;margin-bottom:0}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.feature-card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:24px;box-shadow:0 5px 18px #123d3205}.feature-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;font-size:21px;font-weight:800}.green{background:#e2f0df;color:#2c6748}.yellow{background:#f5f1d8;color:#8b7c27}.peach{background:#f8e8dc;color:#a66643}.feature-card h3{font-size:15px;margin:17px 0 7px}.feature-card p{font-size:12px;color:var(--muted);margin-bottom:0}.bottom-cta{margin-top:45px;background:#e7efdf;border-radius:22px;padding:27px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.bottom-cta h2{font-size:24px}.page-heading{margin:14px 0 30px}.page-heading h1{font-size:clamp(34px,4vw,47px);margin:10px 0}.page-heading>p{font-size:14px}.booking-layout{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 8px 30px #123d3205}.form-section+.form-section{border-top:1px solid var(--line);margin-top:23px;padding-top:23px}.form-section h3{font-size:15px;display:flex;align-items:center;gap:9px;margin-bottom:20px}.step{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--soft);color:var(--forest);font-size:12px}.form-panel label,.cleaner-form label{display:block;font-size:12px;font-weight:750;margin:14px 0 7px}.form-panel input,.form-panel select,.cleaner-form input,.cleaner-form select{width:100%;padding:12px 13px;border:1px solid #dce4dc;border-radius:10px;background:#fff;color:var(--ink);outline:none}.form-panel input:focus,.form-panel select:focus,.cleaner-form input:focus,.cleaner-form select:focus{border-color:#67957a;box-shadow:0 0 0 3px #dceee0}.form-panel>.btn{margin-top:24px}.quote-panel{position:sticky;top:100px;min-height:330px;background:#f0f5ed}.quote-top{display:flex;align-items:center;justify-content:space-between}.quote-symbol{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#dfead9;color:var(--forest);font-weight:800}.quote-panel h2{font-size:23px;letter-spacing:-.6px;margin:35px 0 8px}.quote-panel p{color:var(--muted);font-size:13px}.price{font-size:43px;font-weight:850;letter-spacing:-2px;color:var(--forest);margin:7px 0 20px}.price-line{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid #dbe4d8;font-size:11px;color:#617066}.price-line strong{font-size:12px;color:var(--ink);white-space:nowrap}.quote-panel .btn{margin:20px 0 10px}.fine-print{display:block;font-size:10px;color:#7a877e;line-height:1.5;margin-top:13px}.quote-foot{border-top:1px solid #dbe4d8;margin-top:27px;padding-top:17px;color:#65766b;font-size:10px}.quote-foot span{margin-right:7px;color:#4c8561}.request-summary{background:#e3f1df;border:1px solid #cfe4ca;border-radius:12px;padding:14px;margin-top:14px;font-size:12px;color:#254d35;line-height:1.7}.cleaner-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#e4efdf;border-radius:24px;padding:35px 40px;overflow:hidden}.cleaner-banner h2{font-size:31px;letter-spacing:-1.2px;margin:13px 0}.cleaner-banner p{color:var(--muted);font-size:13px;max-width:430px}.cleaner-illustration{position:relative;display:grid;place-items:center;width:175px;height:175px;flex-shrink:0;background:#d1e4cb;border-radius:50%;font-size:100px;color:#4c8460}.cleaner-illustration span{position:absolute;right:0;top:10px;font-size:48px;color:#d1a05c}.cleaner-features{margin-top:20px}.cleaner-form{margin-top:25px}.cleaner-form h2{font-size:22px}.cleaner-form .btn{margin-top:18px}.muted{color:var(--muted);font-size:12px}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px}.stat-card span,.stat-card small{display:block;color:var(--muted);font-size:11px}.stat-card strong{display:block;font-size:28px;letter-spacing:-1px;margin:13px 0 5px;color:var(--forest)}.stat-card small{font-size:10px}.admin-panel{margin-top:22px}.admin-panel h2{font-size:23px;letter-spacing:-.6px;margin:9px 0 23px}.admin-list>div{display:flex;align-items:center;gap:13px;padding:16px 0;border-top:1px solid var(--line)}.admin-icon{width:37px;height:37px;border-radius:11px;background:var(--soft);display:grid;place-items:center;color:var(--forest);font-weight:800}.admin-list>div>span:nth-child(2){flex:1}.admin-list strong,.admin-list small{display:block}.admin-list strong{font-size:12px}.admin-list small{font-size:10px;color:var(--muted);margin-top:4px}.tag{font-size:9px;color:#6a785f;background:#f2f4e5;border-radius:20px;padding:6px 9px}footer{border-top:1px solid var(--line);padding:24px max(5vw,24px);display:flex;align-items:center;justify-content:space-between;gap:15px;background:#fff;color:var(--muted);font-size:10px}.footer-brand .brand-mark{width:30px;height:30px;border-radius:9px;font-size:18px}.footer-brand strong{font-size:13px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--forest);color:white;padding:12px 17px;border-radius:12px;font-size:12px;box-shadow:var(--shadow);transition:.2s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}
+@media(max-width:800px){.topbar{height:72px;padding:0 18px}.menu-toggle{display:block}.topbar nav{display:none;position:absolute;top:71px;left:0;right:0;background:white;padding:10px 18px 16px;border-bottom:1px solid var(--line);flex-direction:column;box-shadow:var(--shadow)}.topbar nav.open{display:flex}.nav-link{text-align:left}.view{padding:25px 17px 48px}.hero{grid-template-columns:1fr;padding:20px 0 38px;gap:24px}.hero h1{font-size:43px}.hero-art{height:300px}.feature-grid{grid-template-columns:1fr}.feature-card{padding:20px}.section-heading{margin-top:20px}.bottom-cta{align-items:flex-start;flex-direction:column;padding:24px}.booking-layout{grid-template-columns:1fr}.quote-panel{position:static;min-height:0}.stats-grid{grid-template-columns:repeat(2,1fr)}.cleaner-banner{padding:25px;align-items:flex-start}.cleaner-illustration{width:100px;height:100px;font-size:60px}.cleaner-banner h2{font-size:26px}footer{flex-wrap:wrap}footer>span:last-child{width:100%}}
+@media(max-width:430px){.brand small{font-size:9px}.brand strong{font-size:15px}.brand-mark{width:38px;height:38px}.hero h1{font-size:39px}.hero-art{height:260px}.trust-row{gap:8px}.trust-row span{font-size:10px}.panel{padding:19px}.cleaner-banner{display:block}.cleaner-illustration{display:none}.stats-grid{gap:9px}.stat-card{padding:14px}.stat-card strong{font-size:24px}.admin-list>div{align-items:flex-start}.tag{display:none}}
+
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-view="home" aria-label="Diarista Fácil - início">
+      <span class="brand-mark">✦</span>
+      <span><strong>Diarista Fácil</strong><small>Sua casa limpa, sua vida mais leve.</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    <nav id="nav">
+      <button class="nav-link active" data-view="home">Início</button>
+      <button class="nav-link" data-view="booking">Contratar</button>
+      <button class="nav-link" data-view="cleaner">Sou diarista</button>
+      <button class="nav-link" data-view="admin">Gestão</button>
+      <button class="nav-link" data-view="auth" id="authNav">Entrar / Cadastro</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="view" id="view-auth">
+      <div class="page-heading"><span class="eyebrow">SUA CONTA</span><h1>Entrar ou criar conta</h1><p>Use seu e-mail e senha para salvar seu perfil e os agendamentos no Diarista Fácil.</p></div>
+      <form class="panel cleaner-form" id="authForm">
+        <label for="authName">Nome completo</label><input id="authName" autocomplete="name" placeholder="Seu nome" required>
+        <label for="authPhone">Telefone (opcional)</label><input id="authPhone" autocomplete="tel" placeholder="(21) 99999-9999">
+        <label for="authRole">Quero me cadastrar como</label><select id="authRole"><option value="cliente">Cliente</option><option value="diarista">Diarista</option></select>
+        <label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" placeholder="voce@email.com" required>
+        <label for="authPassword">Senha (mínimo 6 caracteres)</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn btn-primary" type="submit" id="signupButton">Criar conta</button><button class="btn btn-light" type="button" id="loginButton">Já tenho conta — entrar</button><button class="btn btn-light" type="button" id="logoutButton" hidden>Sair</button></div>
+        <p id="authStatus" class="muted" role="status" style="margin-top:16px"></p>
+      </form>
+    </section>
+    <section class="view active" id="view-home">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> COMEÇANDO PELO RIO DE JANEIRO</span>
+          <h1>Uma casa limpa.<br><em>Mais tempo para você.</em></h1>
+          <p>Encontre uma diarista para sua casa ou apartamento com uma experiência simples, transparente e prática.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-go="booking">Encontrar uma diarista <span>→</span></button>
+            <button class="btn btn-light" data-go="cleaner">Quero trabalhar</button>
+          </div>
+          <div class="trust-row"><span>✓ Preço estimado antes</span><span>✓ Avaliações</span><span>✓ Foco residencial</span></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Ilustração de uma casa limpa">
+          <div class="sun"></div><div class="plant plant-one">✿</div><div class="room">
+            <div class="window"><i></i><i></i><i></i><i></i></div>
+            <div class="sofa"><span></span><span></span></div><div class="table"></div>
+            <div class="rug"></div><div class="vase">✦</div>
+          </div>
+          <div class="floating-card"><span class="float-icon">✓</span><span><strong>Seu lar, cuidado</strong><small>Do seu jeito.</small></span></div>
+        </div>
+      </div>
+      <div class="section-heading"><span class="eyebrow">SIMPLES ASSIM</span><h2>Limpeza sem complicação</h2><p>Uma experiência feita para clientes e profissionais.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon green">⌂</div><h3>Para sua casa</h3><p>Casas, apartamentos e kitnets. Você escolhe o tipo de limpeza.</p></article>
+        <article class="feature-card"><div class="feature-icon yellow">▦</div><h3>Agendamento fácil</h3><p>Informe o tamanho do imóvel, o bairro e o período desejado.</p></article>
+        <article class="feature-card"><div class="feature-icon peach">♡</div><h3>Valorize as diaristas</h3><p>Uma plataforma pensada para aproximar clientes e profissionais.</p></article>
+      </div>
+      <div class="bottom-cta"><div><h2>Vamos deixar tudo mais fácil?</h2><p>Monte sua solicitação em poucos passos.</p></div><button class="btn btn-dark" data-go="booking">Fazer uma cotação →</button></div>
+    </section>
+
+    <section class="view" id="view-booking">
+      <div class="page-heading"><span class="eyebrow">PARA CLIENTES</span><h1>Encontre sua diarista</h1><p>Conte um pouco sobre o imóvel para ver uma estimativa ilustrativa.</p></div>
+      <div class="booking-layout">
+        <form class="panel form-panel" id="bookingForm">
+          <div class="form-section">
+            <h3><span class="step">1</span> Seu imóvel</h3>
+            <label for="property">Tipo de imóvel</label>
+            <select id="property"><option value="Apartamento">Apartamento</option><option value="Casa">Casa</option><option value="Kitnet">Kitnet</option></select>
+            <label for="size">Tamanho</label>
+            <select id="size"><option value="1">1 quarto</option><option value="2" selected>2 quartos</option><option value="3">3 quartos</option><option value="4">4 ou mais quartos</option></select>
+            <label for="cleaning">Tipo de limpeza</label>
+            <select id="cleaning"><option value="standard">Limpeza padrão</option><option value="heavy">Limpeza pesada</option><option value="move">Limpeza para mudança</option></select>
+          </div>
+          <div class="form-section">
+            <h3><span class="step">2</span> Onde e quando?</h3>
+            <label for="neighborhood">Bairro no Rio de Janeiro</label>
+            <select id="neighborhood"><option>Recreio dos Bandeirantes</option><option>Barra da Tijuca</option><option>Jacarepaguá</option><option>Copacabana</option><option>Tijuca</option><option>Outro bairro</option></select>
+            <label for="date">Data desejada</label><input id="date" type="date">
+            <label for="period">Período</label>
+            <select id="period"><option>Manhã</option><option>Tarde</option><option>Flexível</option></select>
+          </div>
+          <button class="btn btn-primary full" type="submit">Calcular preço estimado →</button>
+        </form>
+        <aside class="panel quote-panel">
+          <div class="quote-top"><span class="eyebrow">SUA ESTIMATIVA</span><div class="quote-symbol">R$</div></div>
+          <div id="quoteEmpty"><h2>Veja uma estimativa</h2><p>Preencha os detalhes ao lado e calcule o preço ilustrativo do serviço.</p></div>
+          <div id="quoteResult" hidden>
+            <p class="muted" id="quoteDescription">Apartamento · 2 quartos</p>
+            <div class="price" id="quotePrice">R$ 150,00</div>
+            <div class="price-line"><span>Comissão de teste da plataforma (15%)</span><strong id="quoteCommission">R$ 22,50</strong></div>
+            <div class="price-line"><span>Valor destinado à diarista*</span><strong id="quoteCleaner">R$ 127,50</strong></div>
+            <button class="btn btn-dark full" type="button" id="requestButton">Continuar solicitação →</button>
+            <div id="requestSummary" class="request-summary" hidden></div>
+            <small class="fine-print">*Simulação antes de eventuais taxas do meio de pagamento. Estes valores não são tarifas oficiais nem confirmam disponibilidade real.</small>
+          </div>
+          <div class="quote-foot"><span>♧</span> Seus dados pessoais devem ser protegidos em todas as etapas.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="view-cleaner">
+      <div class="page-heading"><span class="eyebrow">ÁREA DA PROFISSIONAL</span><h1>Seu trabalho merece boas oportunidades.</h1><p>Uma área pensada para organizar seu perfil, agenda e ganhos.</p></div>
+      <div class="cleaner-banner"><div><span class="eyebrow">DIARISTA FÁCIL</span><h2>Mostre seu trabalho.<br>Encontre novas oportunidades.</h2><p>Crie um perfil profissional e informe as regiões onde atende.</p><button class="btn btn-primary" id="showCleanerForm">Conhecer cadastro →</button></div><div class="cleaner-illustration">✿<span>✦</span></div></div>
+      <div class="feature-grid cleaner-features">
+        <article class="feature-card"><div class="feature-icon green">◎</div><h3>Perfil profissional</h3><p>Nome profissional, foto opcional, serviços e regiões atendidas.</p></article>
+        <article class="feature-card"><div class="feature-icon yellow">▦</div><h3>Organize a agenda</h3><p>Veja solicitações e informe quando pode trabalhar.</p></article>
+        <article class="feature-card"><div class="feature-icon peach">R$</div><h3>Acompanhe ganhos</h3><p>Visualize os serviços e a comissão aplicada.</p></article>
+      </div>
+      <form class="panel cleaner-form" id="cleanerForm" hidden>
+        <h2>Prévia de cadastro profissional</h2><p class="muted">Não envie documentos ou dados pessoais nesta demonstração.</p>
+        <label for="proName">Nome profissional</label><input id="proName" placeholder="Como deseja ser apresentada?">
+        <label for="proRegion">Região onde atende</label><select id="proRegion"><option>Recreio e Barra da Tijuca</option><option>Zona Sul</option><option>Zona Norte</option><option>Jacarepaguá</option><option>Outra região do Rio</option></select>
+        <label for="proServices">Serviços oferecidos</label><select id="proServices"><option>Limpeza padrão</option><option>Limpeza pesada</option><option>Limpeza para mudança</option><option>Mais de um tipo de limpeza</option></select>
+        <button class="btn btn-primary" type="submit">Ver resumo de demonstração</button><div id="cleanerPreview" class="request-summary" hidden></div>
+      </form>
+    </section>
+
+    <section class="view" id="view-admin">
+      <div class="page-heading"><span class="eyebrow">PAINEL ADMINISTRATIVO</span><h1>Visão geral da plataforma</h1><p>Estrutura demonstrativa para administrar o Diarista Fácil.</p></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span>Profissionais cadastradas</span><strong>—</strong><small>Sem cadastros reais</small></article>
+        <article class="stat-card"><span>Serviços solicitados</span><strong>—</strong><small>Sem pedidos reais</small></article>
+        <article class="stat-card"><span>Comissão de teste</span><strong>15%</strong><small>Por serviço concluído</small></article>
+        <article class="stat-card"><span>Receita da plataforma</span><strong>R$ 0,00</strong><small>Sem transações reais</small></article>
+      </div>
+      <div class="panel admin-panel"><div><span class="eyebrow">PRÓXIMAS FUNÇÕES</span><h2>Controle do negócio em um só lugar</h2></div><div class="admin-list"><div><span class="admin-icon">✓</span><span><strong>Verificação de profissionais</strong><small>Fluxo de análise com proteção de documentos.</small></span><b class="tag">Planejado</b></div><div><span class="admin-icon">▣</span><span><strong>Pagamentos e repasses</strong><small>Integração com provedor de pagamento compatível.</small></span><b class="tag">Planejado</b></div><div><span class="admin-icon">♡</span><span><strong>Reclamações e avaliações</strong><small>Revisão de conflitos antes de liberar repasses.</small></span><b class="tag">Planejado</b></div></div></div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="#" data-view="home"><span class="brand-mark">✦</span><strong>Diarista Fácil</strong></a><span>Protótipo inicial · Rio de Janeiro</span><span>© <span id="year"></span> Diarista Fácil</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+const SUPABASE_URL = "https://uwvlwozdmjeqijdbvhdl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dkYVbMlsDNsiKfURijYC8A_uBSP-1Rw";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const views = ["home", "booking", "cleaner", "admin", "auth"];
+const nav = document.getElementById("nav");
+const menuToggle = document.getElementById("menuToggle");
+const toast = document.getElementById("toast");
+let toastTimer;
+let currentUser = null;
+function showToast(message) { toast.textContent = message; toast.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 3200); }
+function showView(name) {
+  if (!views.includes(name)) return;
+  document.querySelectorAll(".view").forEach(el => el.classList.toggle("active", el.id === `view-${name}`));
+  document.querySelectorAll(".nav-link").forEach(el => el.classList.toggle("active", el.dataset.view === name));
+  nav.classList.remove("open"); window.scrollTo({top: 0, behavior: "smooth"});
+}
+document.querySelectorAll("[data-view]").forEach(el => el.addEventListener("click", e => { e.preventDefault(); showView(el.dataset.view); }));
+document.querySelectorAll("[data-go]").forEach(el => el.addEventListener("click", () => showView(el.dataset.go)));
+menuToggle.addEventListener("click", () => nav.classList.toggle("open"));
+document.getElementById("year").textContent = new Date().getFullYear();
+const form = document.getElementById("bookingForm");
+const property = document.getElementById("property");
+const size = document.getElementById("size");
+const cleaning = document.getElementById("cleaning");
+const neighborhood = document.getElementById("neighborhood");
+const date = document.getElementById("date");
+const period = document.getElementById("period");
+let quoteAmount = 0;
+function calculateQuote() {
+  const base = property.value === "Casa" ? 180 : property.value === "Kitnet" ? 90 : 120;
+  const sizeCost = {"1":0,"2":30,"3":70,"4":120}[size.value];
+  const cleaningCost = cleaning.value === "heavy" ? 100 : cleaning.value === "move" ? 130 : 0;
+  quoteAmount = base + sizeCost + cleaningCost;
+  const money = amount => amount.toLocaleString("pt-BR", {style:"currency",currency:"BRL"});
+  const cleaningLabel = {standard:"Limpeza padrão",heavy:"Limpeza pesada",move:"Limpeza para mudança"}[cleaning.value];
+  document.getElementById("quoteDescription").textContent = `${property.value} · ${size.options[size.selectedIndex].text} · ${cleaningLabel}`;
+  document.getElementById("quotePrice").textContent = money(quoteAmount);
+  document.getElementById("quoteCommission").textContent = money(quoteAmount * .15);
+  document.getElementById("quoteCleaner").textContent = money(quoteAmount * .85);
+  document.getElementById("quoteEmpty").hidden = true; document.getElementById("quoteResult").hidden = false; document.getElementById("requestSummary").hidden = true;
+}
+form.addEventListener("submit", e => { e.preventDefault(); calculateQuote(); });
+document.getElementById("requestButton").addEventListener("click", async () => {
+  const summary = document.getElementById("requestSummary");
+  if (!currentUser) { summary.textContent = "Para salvar seu agendamento online, entre ou crie uma conta primeiro."; summary.hidden = false; showView("auth"); showToast("Entre ou crie sua conta para continuar."); return; }
+  const chosenDate = date.value || null;
+  const cleaningLabel = {standard:"Limpeza padrão",heavy:"Limpeza pesada",move:"Limpeza para mudança"}[cleaning.value];
+  const { error } = await supabaseClient.from("agendamentos").insert({cliente_id:currentUser.id,tipo_imovel:property.value,quartos:Number(size.value),tipo_limpeza:cleaningLabel,bairro:neighborhood.value,data_servico:chosenDate,periodo:period.value,valor_estimado:quoteAmount,status:"pendente"});
+  if (error) { showToast("Não foi possível salvar. Confira se sua conta é de cliente e tente novamente."); summary.textContent = "Erro ao salvar agendamento: " + error.message; summary.hidden = false; return; }
+  summary.innerHTML = `<strong>Solicitação salva!</strong><br>Bairro: ${escapeHTML(neighborhood.value)}<br>Data: ${chosenDate ? new Date(chosenDate+"T12:00:00").toLocaleDateString("pt-BR") : "Ainda não escolhida"}<br>Período: ${escapeHTML(period.value)}<br>Estimativa: ${quoteAmount.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}<br><small>Pedido registrado no banco de dados. Ainda não confirma disponibilidade de uma diarista nem realiza pagamento.</small>`;
+  summary.hidden = false; showToast("Agendamento salvo no Diarista Fácil!");
+});
+function escapeHTML(value) { return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch])); }
+document.getElementById("showCleanerForm").addEventListener("click", () => { const form = document.getElementById("cleanerForm"); form.hidden = !form.hidden; if (!form.hidden) form.scrollIntoView({behavior:"smooth",block:"start"}); });
+document.getElementById("cleanerForm").addEventListener("submit", e => { e.preventDefault(); showView("auth"); document.getElementById("authRole").value="diarista"; document.getElementById("authName").value=document.getElementById("proName").value.trim(); showToast("Crie sua conta de diarista para cadastrar seu perfil."); });
+const authStatus = document.getElementById("authStatus");
+function updateAuthUI(user) {
+  currentUser = user;
+  document.getElementById("authNav").textContent = user ? "Minha conta" : "Entrar / Cadastro";
+  document.getElementById("logoutButton").hidden = !user;
+  document.getElementById("signupButton").hidden = !!user;
+  document.getElementById("loginButton").hidden = !!user;
+  if (user) { authStatus.textContent = `Conectado como ${user.email}. Para trocar de conta, toque em Sair.`; document.getElementById("authName").value = user.user_metadata?.nome || document.getElementById("authName").value; }
+  else authStatus.textContent = "Ainda não entrou. Crie uma conta ou entre com e-mail e senha.";
+}
+async function saveProfile(user, metadata) {
+  const nome = metadata?.nome || user.user_metadata?.nome || user.email || "Usuário";
+  const tipo = metadata?.tipo || user.user_metadata?.tipo || "cliente";
+  const telefone = metadata?.telefone || user.user_metadata?.telefone || null;
+  const { error } = await supabaseClient.from("profiles").upsert({id:user.id,nome,tipo,telefone},{onConflict:"id"});
+  if (error) console.error("Erro ao salvar perfil:", error.message);
+  return error;
+}
+document.getElementById("authForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const nome = document.getElementById("authName").value.trim();
+  const telefone = document.getElementById("authPhone").value.trim();
+  const tipo = document.getElementById("authRole").value;
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+  if (password.length < 6) { authStatus.textContent = "A senha precisa ter pelo menos 6 caracteres."; return; }
+  authStatus.textContent = "Criando sua conta...";
+  const { data, error } = await supabaseClient.auth.signUp({email,password,options:{data:{nome,tipo,telefone}}});
+  if (error) { authStatus.textContent = "Não foi possível criar a conta: " + error.message; return; }
+  if (data.user && data.session) {
+    const profileError = await saveProfile(data.user,{nome,tipo,telefone});
+    updateAuthUI(data.user);
+    authStatus.textContent = profileError ? "Conta criada, mas houve um problema ao salvar o perfil: "+profileError.message : "Conta criada e perfil salvo! Já pode fazer um agendamento.";
+    showToast(profileError ? "Conta criada; confira o perfil." : "Conta criada com sucesso!");
+  } else {
+    authStatus.textContent = "Conta iniciada! Confira seu e-mail para confirmar o cadastro. Depois volte aqui e entre com sua senha.";
+    showToast("Confira seu e-mail para confirmar o cadastro.");
+  }
+});
+document.getElementById("loginButton").addEventListener("click", async () => {
+  const email = document.getElementById("authEmail").value.trim(); const password = document.getElementById("authPassword").value;
+  if (!email || !password) { authStatus.textContent = "Preencha o e-mail e a senha para entrar."; return; }
+  authStatus.textContent = "Entrando...";
+  const {data,error} = await supabaseClient.auth.signInWithPassword({email,password});
+  if (error) { authStatus.textContent = "Não foi possível entrar: " + error.message; return; }
+  await saveProfile(data.user); updateAuthUI(data.user); showToast("Você entrou na sua conta!");
+});
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  const {error} = await supabaseClient.auth.signOut();
+  if (error) { authStatus.textContent = "Erro ao sair: " + error.message; return; }
+  updateAuthUI(null); authStatus.textContent = "Você saiu da conta."; showToast("Você saiu da conta.");
+});
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  updateAuthUI(session?.user || null);
+});
+(async () => { const {data} = await supabaseClient.auth.getSession(); updateAuthUI(data.session?.user || null); })();
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+</script>
+</body>
+</html>
