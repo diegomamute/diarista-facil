@@ -39,7 +39,7 @@
         <label for="authRole">Quero me cadastrar como</label><select id="authRole"><option value="cliente">Cliente</option><option value="diarista">Diarista</option></select>
         <label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" placeholder="voce@email.com" required>
         <label for="authPassword">Senha (mínimo 6 caracteres)</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn btn-primary" type="submit" id="signupButton">Criar conta</button><button class="btn btn-light" type="button" id="loginButton">Já tenho conta — entrar</button><button class="btn btn-light" type="button" id="logoutButton" hidden>Sair</button></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn btn-primary" type="submit" id="signupButton">Criar conta</button><button class="btn btn-primary" type="button" id="loginSubmitButton" hidden>Entrar</button><button class="btn btn-light" type="button" id="loginButton">Já tenho cadastro</button><button class="btn btn-light" type="button" id="backToSignupButton" hidden>Quero me cadastrar</button><button class="btn btn-light" type="button" id="logoutButton" hidden>Sair</button></div>
         <p id="authStatus" class="muted" role="status" style="margin-top:16px"></p>
       </form>
     </section>
@@ -201,12 +201,45 @@ function escapeHTML(value) { return String(value).replace(/[&<>"']/g, ch => ({"&
 document.getElementById("showCleanerForm").addEventListener("click", () => { const form = document.getElementById("cleanerForm"); form.hidden = !form.hidden; if (!form.hidden) form.scrollIntoView({behavior:"smooth",block:"start"}); });
 document.getElementById("cleanerForm").addEventListener("submit", e => { e.preventDefault(); showView("auth"); document.getElementById("authRole").value="diarista"; document.getElementById("authName").value=document.getElementById("proName").value.trim(); showToast("Crie sua conta de diarista para cadastrar seu perfil."); });
 const authStatus = document.getElementById("authStatus");
+let authMode = "signup";
+function setAuthMode(mode) {
+  authMode = mode;
+  const login = mode === "login";
+  document.getElementById("authName").required = !login;
+  ["authName", "authPhone", "authRole"].forEach(id => {
+    const el = document.getElementById(id);
+    el.hidden = login;
+    const label = document.querySelector(`label[for="${id}"]`);
+    if (label) label.hidden = login;
+  });
+  document.getElementById("signupButton").hidden = login;
+  document.getElementById("loginSubmitButton").hidden = !login;
+  document.getElementById("loginButton").hidden = login;
+  document.getElementById("backToSignupButton").hidden = !login;
+  document.querySelector("#view-auth .page-heading h1").textContent = login ? "Entrar na sua conta" : "Criar sua conta";
+  document.querySelector("#view-auth .page-heading p").textContent = login ? "Digite somente seu e-mail e sua senha." : "Use seu e-mail e senha para criar sua conta no Diarista Fácil.";
+  document.getElementById("authPassword").autocomplete = login ? "current-password" : "new-password";
+  authStatus.textContent = login ? "Entre com o e-mail e a senha que você cadastrou." : "Preencha os dados para criar sua conta.";
+}
+document.getElementById("loginButton").addEventListener("click", () => setAuthMode("login"));
+document.getElementById("backToSignupButton").addEventListener("click", () => setAuthMode("signup"));
+document.getElementById("loginSubmitButton").addEventListener("click", async () => {
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+  if (!email || !password) { authStatus.textContent = "Preencha o e-mail e a senha para entrar."; return; }
+  authStatus.textContent = "Entrando...";
+  const {data,error} = await supabaseClient.auth.signInWithPassword({email,password});
+  if (error) { authStatus.textContent = "Não foi possível entrar: " + error.message; return; }
+  await saveProfile(data.user); updateAuthUI(data.user); showToast("Você entrou na sua conta!");
+});
 function updateAuthUI(user) {
   currentUser = user;
   document.getElementById("authNav").textContent = user ? "Minha conta" : "Entrar / Cadastro";
   document.getElementById("logoutButton").hidden = !user;
   document.getElementById("signupButton").hidden = !!user;
-  document.getElementById("loginButton").hidden = !!user;
+  document.getElementById("loginButton").hidden = !!user || authMode === "login";
+  document.getElementById("loginSubmitButton").hidden = !!user || authMode !== "login";
+  document.getElementById("backToSignupButton").hidden = !!user || authMode !== "login";
   if (user) { authStatus.textContent = `Conectado como ${user.email}. Para trocar de conta, toque em Sair.`; document.getElementById("authName").value = user.user_metadata?.nome || document.getElementById("authName").value; }
   else authStatus.textContent = "Ainda não entrou. Crie uma conta ou entre com e-mail e senha.";
 }
@@ -220,6 +253,7 @@ async function saveProfile(user, metadata) {
 }
 document.getElementById("authForm").addEventListener("submit", async e => {
   e.preventDefault();
+  if (authMode === "login") { document.getElementById("loginSubmitButton").click(); return; }
   const nome = document.getElementById("authName").value.trim();
   const telefone = document.getElementById("authPhone").value.trim();
   const tipo = document.getElementById("authRole").value;
@@ -238,14 +272,6 @@ document.getElementById("authForm").addEventListener("submit", async e => {
     authStatus.textContent = "Conta iniciada! Confira seu e-mail para confirmar o cadastro. Depois volte aqui e entre com sua senha.";
     showToast("Confira seu e-mail para confirmar o cadastro.");
   }
-});
-document.getElementById("loginButton").addEventListener("click", async () => {
-  const email = document.getElementById("authEmail").value.trim(); const password = document.getElementById("authPassword").value;
-  if (!email || !password) { authStatus.textContent = "Preencha o e-mail e a senha para entrar."; return; }
-  authStatus.textContent = "Entrando...";
-  const {data,error} = await supabaseClient.auth.signInWithPassword({email,password});
-  if (error) { authStatus.textContent = "Não foi possível entrar: " + error.message; return; }
-  await saveProfile(data.user); updateAuthUI(data.user); showToast("Você entrou na sua conta!");
 });
 document.getElementById("logoutButton").addEventListener("click", async () => {
   const {error} = await supabaseClient.auth.signOut();
