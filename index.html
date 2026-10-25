@@ -1,4 +1,4 @@
-<!doctype html>
+<!<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -34,6 +34,258 @@
     <section class="view" id="view-auth">
       <div class="page-heading"><span class="eyebrow">SUA CONTA</span><h1>Entrar ou criar conta</h1><p>Use seu e-mail e senha para salvar seu perfil e os agendamentos no Diarista Fácil.</p></div>
       <form class="panel cleaner-form" id="authForm">
+        <label for="authName">Nome completo</label><input id="authName" autocomplete="name" placeholder="Seu nome" required>
+        <label for="authPhone">Telefone (opcional)</label><input id="authPhone" autocomplete="tel" placeholder="(21) 99999-9999">
+        <label for="authRole">Quero me cadastrar como</label><select id="authRole"><option value="cliente">Cliente</option><option value="diarista">Diarista</option></select>
+        <label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" placeholder="voce@email.com" required>
+        <label for="authPassword">Senha (mínimo 6 caracteres)</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn btn-primary" type="submit" id="signupButton">Criar conta</button><button class="btn btn-primary" type="button" id="loginSubmitButton" hidden>Entrar</button><button class="btn btn-light" type="button" id="loginButton">Já tenho cadastro</button><button class="btn btn-light" type="button" id="backToSignupButton" hidden>Quero me cadastrar</button><button class="btn btn-light" type="button" id="logoutButton" hidden>Sair</button></div>
+        <p id="authStatus" class="muted" role="status" style="margin-top:16px"></p>
+      </form>
+    </section>
+    <section class="view active" id="view-home">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> COMEÇANDO PELO RIO DE JANEIRO</span>
+          <h1>Uma casa limpa.<br><em>Mais tempo para você.</em></h1>
+          <p>Encontre uma diarista para sua casa ou apartamento com uma experiência simples, transparente e prática.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-go="booking">Encontrar uma diarista <span>→</span></button>
+            <button class="btn btn-light" data-go="cleaner">Quero trabalhar</button>
+          </div>
+          <div class="trust-row"><span>✓ Preço estimado antes</span><span>✓ Avaliações</span><span>✓ Foco residencial</span></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Ilustração de uma casa limpa">
+          <div class="sun"></div><div class="plant plant-one">✿</div><div class="room">
+            <div class="window"><i></i><i></i><i></i><i></i></div>
+            <div class="sofa"><span></span><span></span></div><div class="table"></div>
+            <div class="rug"></div><div class="vase">✦</div>
+          </div>
+          <div class="floating-card"><span class="float-icon">✓</span><span><strong>Seu lar, cuidado</strong><small>Do seu jeito.</small></span></div>
+        </div>
+      </div>
+      <div class="section-heading"><span class="eyebrow">SIMPLES ASSIM</span><h2>Limpeza sem complicação</h2><p>Uma experiência feita para clientes e profissionais.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon green">⌂</div><h3>Para sua casa</h3><p>Casas, apartamentos e kitnets. Você escolhe o tipo de limpeza.</p></article>
+        <article class="feature-card"><div class="feature-icon yellow">▦</div><h3>Agendamento fácil</h3><p>Informe o tamanho do imóvel, o bairro e o período desejado.</p></article>
+        <article class="feature-card"><div class="feature-icon peach">♡</div><h3>Valorize as diaristas</h3><p>Uma plataforma pensada para aproximar clientes e profissionais.</p></article>
+      </div>
+      <div class="bottom-cta"><div><h2>Vamos deixar tudo mais fácil?</h2><p>Monte sua solicitação em poucos passos.</p></div><button class="btn btn-dark" data-go="booking">Fazer uma cotação →</button></div>
+    </section>
+
+    <section class="view" id="view-booking">
+      <div class="page-heading"><span class="eyebrow">PARA CLIENTES</span><h1>Encontre sua diarista</h1><p>Conte um pouco sobre o imóvel para ver uma estimativa ilustrativa.</p></div>
+      <div class="booking-layout">
+        <form class="panel form-panel" id="bookingForm">
+          <div class="form-section">
+            <h3><span class="step">1</span> Seu imóvel</h3>
+            <label for="property">Tipo de imóvel</label>
+            <select id="property"><option value="Apartamento">Apartamento</option><option value="Casa">Casa</option><option value="Kitnet">Kitnet</option></select>
+            <label for="size">Tamanho</label>
+            <select id="size"><option value="1">1 quarto</option><option value="2" selected>2 quartos</option><option value="3">3 quartos</option><option value="4">4 ou mais quartos</option></select>
+            <label for="cleaning">Tipo de limpeza</label>
+            <select id="cleaning"><option value="standard">Limpeza padrão</option><option value="heavy">Limpeza pesada</option><option value="move">Limpeza para mudança</option></select>
+          </div>
+          <div class="form-section">
+            <h3><span class="step">2</span> Onde e quando?</h3>
+            <label for="neighborhood">Bairro no Rio de Janeiro</label>
+            <select id="neighborhood"><option>Recreio dos Bandeirantes</option><option>Barra da Tijuca</option><option>Jacarepaguá</option><option>Copacabana</option><option>Tijuca</option><option>Outro bairro</option></select>
+            <label for="date">Data desejada</label><input id="date" type="date">
+            <label for="period">Período</label>
+            <select id="period"><option>Manhã</option><option>Tarde</option><option>Flexível</option></select>
+          </div>
+          <button class="btn btn-primary full" type="submit">Calcular preço estimado →</button>
+        </form>
+        <aside class="panel quote-panel">
+          <div class="quote-top"><span class="eyebrow">SUA ESTIMATIVA</span><div class="quote-symbol">R$</div></div>
+          <div id="quoteEmpty"><h2>Veja uma estimativa</h2><p>Preencha os detalhes ao lado e calcule o preço ilustrativo do serviço.</p></div>
+          <div id="quoteResult" hidden>
+            <p class="muted" id="quoteDescription">Apartamento · 2 quartos</p>
+            <div class="price" id="quotePrice">R$ 150,00</div>
+            <div class="price-line"><span>Comissão de teste da plataforma (15%)</span><strong id="quoteCommission">R$ 22,50</strong></div>
+            <div class="price-line"><span>Valor destinado à diarista*</span><strong id="quoteCleaner">R$ 127,50</strong></div>
+            <button class="btn btn-dark full" type="button" id="requestButton">Continuar solicitação →</button>
+            <div id="requestSummary" class="request-summary" hidden></div>
+            <small class="fine-print">*Simulação antes de eventuais taxas do meio de pagamento. Estes valores não são tarifas oficiais nem confirmam disponibilidade real.</small>
+          </div>
+          <div class="quote-foot"><span>♧</span> Seus dados pessoais devem ser protegidos em todas as etapas.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="view-cleaner">
+      <div class="page-heading"><span class="eyebrow">ÁREA DA PROFISSIONAL</span><h1>Seu trabalho merece boas oportunidades.</h1><p>Uma área pensada para organizar seu perfil, agenda e ganhos.</p></div>
+      <div class="cleaner-banner"><div><span class="eyebrow">DIARISTA FÁCIL</span><h2>Mostre seu trabalho.<br>Encontre novas oportunidades.</h2><p>Crie um perfil profissional e informe as regiões onde atende.</p><button class="btn btn-primary" id="showCleanerForm">Conhecer cadastro →</button></div><div class="cleaner-illustration">✿<span>✦</span></div></div>
+      <div class="feature-grid cleaner-features">
+        <article class="feature-card"><div class="feature-icon green">◎</div><h3>Perfil profissional</h3><p>Nome profissional, foto opcional, serviços e regiões atendidas.</p></article>
+        <article class="feature-card"><div class="feature-icon yellow">▦</div><h3>Organize a agenda</h3><p>Veja solicitações e informe quando pode trabalhar.</p></article>
+        <article class="feature-card"><div class="feature-icon peach">R$</div><h3>Acompanhe ganhos</h3><p>Visualize os serviços e a comissão aplicada.</p></article>
+      </div>
+      <form class="panel cleaner-form" id="cleanerForm" hidden>
+        <h2>Prévia de cadastro profissional</h2><p class="muted">Não envie documentos ou dados pessoais nesta demonstração.</p>
+        <label for="proName">Nome profissional</label><input id="proName" placeholder="Como deseja ser apresentada?">
+        <label for="proRegion">Região onde atende</label><select id="proRegion"><option>Recreio e Barra da Tijuca</option><option>Zona Sul</option><option>Zona Norte</option><option>Jacarepaguá</option><option>Outra região do Rio</option></select>
+        <label for="proServices">Serviços oferecidos</label><select id="proServices"><option>Limpeza padrão</option><option>Limpeza pesada</option><option>Limpeza para mudança</option><option>Mais de um tipo de limpeza</option></select>
+        <button class="btn btn-primary" type="submit">Ver resumo de demonstração</button><div id="cleanerPreview" class="request-summary" hidden></div>
+      </form>
+    </section>
+
+    <section class="view" id="view-admin">
+      <div class="page-heading"><span class="eyebrow">PAINEL ADMINISTRATIVO</span><h1>Visão geral da plataforma</h1><p>Estrutura demonstrativa para administrar o Diarista Fácil.</p></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span>Profissionais cadastradas</span><strong>—</strong><small>Sem cadastros reais</small></article>
+        <article class="stat-card"><span>Serviços solicitados</span><strong>—</strong><small>Sem pedidos reais</small></article>
+        <article class="stat-card"><span>Comissão de teste</span><strong>15%</strong><small>Por serviço concluído</small></article>
+        <article class="stat-card"><span>Receita da plataforma</span><strong>R$ 0,00</strong><small>Sem transações reais</small></article>
+      </div>
+      <div class="panel admin-panel"><div><span class="eyebrow">PRÓXIMAS FUNÇÕES</span><h2>Controle do negócio em um só lugar</h2></div><div class="admin-list"><div><span class="admin-icon">✓</span><span><strong>Verificação de profissionais</strong><small>Fluxo de análise com proteção de documentos.</small></span><b class="tag">Planejado</b></div><div><span class="admin-icon">▣</span><span><strong>Pagamentos e repasses</strong><small>Integração com provedor de pagamento compatível.</small></span><b class="tag">Planejado</b></div><div><span class="admin-icon">♡</span><span><strong>Reclamações e avaliações</strong><small>Revisão de conflitos antes de liberar repasses.</small></span><b class="tag">Planejado</b></div></div></div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="#" data-view="home"><span class="brand-mark">✦</span><strong>Diarista Fácil</strong></a><span>Protótipo inicial · Rio de Janeiro</span><span>© <span id="year"></span> Diarista Fácil</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+const SUPABASE_URL = "https://uwvlwozdmjeqijdbvhdl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dkYVbMlsDNsiKfURijYC8A_uBSP-1Rw";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const views = ["home", "booking", "cleaner", "admin", "auth"];
+const nav = document.getElementById("nav");
+const menuToggle = document.getElementById("menuToggle");
+const toast = document.getElementById("toast");
+let toastTimer;
+let currentUser = null;
+function showToast(message) { toast.textContent = message; toast.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 3200); }
+function showView(name) {
+  if (!views.includes(name)) return;
+  document.querySelectorAll(".view").forEach(el => el.classList.toggle("active", el.id === `view-${name}`));
+  document.querySelectorAll(".nav-link").forEach(el => el.classList.toggle("active", el.dataset.view === name));
+  nav.classList.remove("open"); window.scrollTo({top: 0, behavior: "smooth"});
+}
+document.querySelectorAll("[data-view]").forEach(el => el.addEventListener("click", e => { e.preventDefault(); showView(el.dataset.view); }));
+document.querySelectorAll("[data-go]").forEach(el => el.addEventListener("click", () => showView(el.dataset.go)));
+menuToggle.addEventListener("click", () => nav.classList.toggle("open"));
+document.getElementById("year").textContent = new Date().getFullYear();
+const form = document.getElementById("bookingForm");
+const property = document.getElementById("property");
+const size = document.getElementById("size");
+const cleaning = document.getElementById("cleaning");
+const neighborhood = document.getElementById("neighborhood");
+const date = document.getElementById("date");
+const period = document.getElementById("period");
+let quoteAmount = 0;
+function calculateQuote() {
+  const base = property.value === "Casa" ? 180 : property.value === "Kitnet" ? 90 : 120;
+  const sizeCost = {"1":0,"2":30,"3":70,"4":120}[size.value];
+  const cleaningCost = cleaning.value === "heavy" ? 100 : cleaning.value === "move" ? 130 : 0;
+  quoteAmount = base + sizeCost + cleaningCost;
+  const money = amount => amount.toLocaleString("pt-BR", {style:"currency",currency:"BRL"});
+  const cleaningLabel = {standard:"Limpeza padrão",heavy:"Limpeza pesada",move:"Limpeza para mudança"}[cleaning.value];
+  document.getElementById("quoteDescription").textContent = `${property.value} · ${size.options[size.selectedIndex].text} · ${cleaningLabel}`;
+  document.getElementById("quotePrice").textContent = money(quoteAmount);
+  document.getElementById("quoteCommission").textContent = money(quoteAmount * .15);
+  document.getElementById("quoteCleaner").textContent = money(quoteAmount * .85);
+  document.getElementById("quoteEmpty").hidden = true; document.getElementById("quoteResult").hidden = false; document.getElementById("requestSummary").hidden = true;
+}
+form.addEventListener("submit", e => { e.preventDefault(); calculateQuote(); });
+document.getElementById("requestButton").addEventListener("click", async () => {
+  const summary = document.getElementById("requestSummary");
+  if (!currentUser) { summary.textContent = "Para salvar seu agendamento online, entre ou crie uma conta primeiro."; summary.hidden = false; showView("auth"); showToast("Entre ou crie sua conta para continuar."); return; }
+  const chosenDate = date.value || null;
+  const cleaningLabel = {standard:"Limpeza padrão",heavy:"Limpeza pesada",move:"Limpeza para mudança"}[cleaning.value];
+  const { error } = await supabaseClient.from("agendamentos").insert({cliente_id:currentUser.id,tipo_imovel:property.value,quartos:Number(size.value),tipo_limpeza:cleaningLabel,bairro:neighborhood.value,data_servico:chosenDate,periodo:period.value,valor_estimado:quoteAmount,status:"pendente"});
+  if (error) { showToast("Não foi possível salvar. Confira se sua conta é de cliente e tente novamente."); summary.textContent = "Erro ao salvar agendamento: " + error.message; summary.hidden = false; return; }
+  summary.innerHTML = `<strong>Solicitação salva!</strong><br>Bairro: ${escapeHTML(neighborhood.value)}<br>Data: ${chosenDate ? new Date(chosenDate+"T12:00:00").toLocaleDateString("pt-BR") : "Ainda não escolhida"}<br>Período: ${escapeHTML(period.value)}<br>Estimativa: ${quoteAmount.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}<br><small>Pedido registrado no banco de dados. Ainda não confirma disponibilidade de uma diarista nem realiza pagamento.</small>`;
+  summary.hidden = false; showToast("Agendamento salvo no Diarista Fácil!");
+});
+function escapeHTML(value) { return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch])); }
+document.getElementById("showCleanerForm").addEventListener("click", () => { const form = document.getElementById("cleanerForm"); form.hidden = !form.hidden; if (!form.hidden) form.scrollIntoView({behavior:"smooth",block:"start"}); });
+document.getElementById("cleanerForm").addEventListener("submit", e => { e.preventDefault(); showView("auth"); document.getElementById("authRole").value="diarista"; document.getElementById("authName").value=document.getElementById("proName").value.trim(); showToast("Crie sua conta de diarista para cadastrar seu perfil."); });
+const authStatus = document.getElementById("authStatus");
+let authMode = "signup";
+function setAuthMode(mode) {
+  authMode = mode;
+  const login = mode === "login";
+  document.getElementById("authName").required = !login;
+  ["authName", "authPhone", "authRole"].forEach(id => {
+    const el = document.getElementById(id);
+    el.hidden = login;
+    const label = document.querySelector(`label[for="${id}"]`);
+    if (label) label.hidden = login;
+  });
+  document.getElementById("signupButton").hidden = login;
+  document.getElementById("loginSubmitButton").hidden = !login;
+  document.getElementById("loginButton").hidden = login;
+  document.getElementById("backToSignupButton").hidden = !login;
+  document.querySelector("#view-auth .page-heading h1").textContent = login ? "Entrar na sua conta" : "Criar sua conta";
+  document.querySelector("#view-auth .page-heading p").textContent = login ? "Digite somente seu e-mail e sua senha." : "Use seu e-mail e senha para criar sua conta no Diarista Fácil.";
+  document.getElementById("authPassword").autocomplete = login ? "current-password" : "new-password";
+  authStatus.textContent = login ? "Entre com o e-mail e a senha que você cadastrou." : "Preencha os dados para criar sua conta.";
+}
+document.getElementById("loginButton").addEventListener("click", () => setAuthMode("login"));
+document.getElementById("backToSignupButton").addEventListener("click", () => setAuthMode("signup"));
+document.getElementById("loginSubmitButton").addEventListener("click", async () => {
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+  if (!email || !password) { authStatus.textContent = "Preencha o e-mail e a senha para entrar."; return; }
+  authStatus.textContent = "Entrando...";
+  const {data,error} = await supabaseClient.auth.signInWithPassword({email,password});
+  if (error) { authStatus.textContent = "Não foi possível entrar: " + error.message; return; }
+  await saveProfile(data.user); updateAuthUI(data.user); showToast("Você entrou na sua conta!");
+});
+function updateAuthUI(user) {
+  currentUser = user;
+  document.getElementById("authNav").textContent = user ? "Minha conta" : "Entrar / Cadastro";
+  document.getElementById("logoutButton").hidden = !user;
+  document.getElementById("signupButton").hidden = !!user;
+  document.getElementById("loginButton").hidden = !!user || authMode === "login";
+  document.getElementById("loginSubmitButton").hidden = !!user || authMode !== "login";
+  document.getElementById("backToSignupButton").hidden = !!user || authMode !== "login";
+  if (user) { authStatus.textContent = `Conectado como ${user.email}. Para trocar de conta, toque em Sair.`; document.getElementById("authName").value = user.user_metadata?.nome || document.getElementById("authName").value; }
+  else authStatus.textContent = "Ainda não entrou. Crie uma conta ou entre com e-mail e senha.";
+}
+async function saveProfile(user, metadata) {
+  const nome = metadata?.nome || user.user_metadata?.nome || user.email || "Usuário";
+  const tipo = metadata?.tipo || user.user_metadata?.tipo || "cliente";
+  const telefone = metadata?.telefone || user.user_metadata?.telefone || null;
+  const { error } = await supabaseClient.from("profiles").upsert({id:user.id,nome,tipo,telefone},{onConflict:"id"});
+  if (error) console.error("Erro ao salvar perfil:", error.message);
+  return error;
+}
+document.getElementById("authForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (authMode === "login") { document.getElementById("loginSubmitButton").click(); return; }
+  const nome = document.getElementById("authName").value.trim();
+  const telefone = document.getElementById("authPhone").value.trim();
+  const tipo = document.getElementById("authRole").value;
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+  if (password.length < 6) { authStatus.textContent = "A senha precisa ter pelo menos 6 caracteres."; return; }
+  authStatus.textContent = "Criando sua conta...";
+  const { data, error } = await supabaseClient.auth.signUp({email,password,options:{data:{nome,tipo,telefone}}});
+  if (error) { authStatus.textContent = "Não foi possível criar a conta: " + error.message; return; }
+  if (data.user && data.session) {
+    const profileError = await saveProfile(data.user,{nome,tipo,telefone});
+    updateAuthUI(data.user);
+    authStatus.textContent = profileError ? "Conta criada, mas houve um problema ao salvar o perfil: "+profileError.message : "Conta criada e perfil salvo! Já pode fazer um agendamento.";
+    showToast(profileError ? "Conta criada; confira o perfil." : "Conta criada com sucesso!");
+  } else {
+    authStatus.textContent = "Conta iniciada! Confira seu e-mail para confirmar o cadastro. Depois volte aqui e entre com sua senha.";
+    showToast("Confira seu e-mail para confirmar o cadastro.");
+  }
+});
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  const {error} = await supabaseClient.auth.signOut();
+  if (error) { authStatus.textContent = "Erro ao sair: " + error.message; return; }
+  updateAuthUI(null); authStatus.textContent = "Você saiu da conta."; showToast("Você saiu da conta.");
+});
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  updateAuthUI(session?.user || null);
+});
+(async () => { const {data} = await supabaseClient.auth.getSession(); updateAuthUI(data.session?.user || null); })();
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+</script>
+</body>
+</html>
         <label for="authName">Nome completo</label><input id="authName" autocomplete="name" placeholder="Seu nome" required>
         <label for="authPhone">Telefone (opcional)</label><input id="authPhone" autocomplete="tel" placeholder="(21) 99999-9999">
         <label for="authRole">Quero me cadastrar como</label><select id="authRole"><option value="cliente">Cliente</option><option value="diarista">Diarista</option></select>
