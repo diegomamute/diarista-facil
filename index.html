@@ -1,1 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#059669">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Diarista Fácil">
+<title>Diarista Fácil RJ</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2972/2972537.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *{-webkit-tap-highlight-color:transparent}
+  body{overscroll-behavior-y:none}
+  .hidden{display:none!important}
+  .fade-in{animation:fadeIn .3s ease-in}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .custom-scroll::-webkit-scrollbar{height:6px;width:6px}
+  .custom-scroll::-webkit-scrollbar-thumb{background:#10b981;border-radius:9999px}
+  .glass-effect{background:rgba(255,255,255,.94);backdrop-filter:blur(12px)}
+  .btn-tap:active{transform:scale(.97)}
+</style>
+</head>
+<body class="bg-emerald-50/40 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-emerald-200">
 
+<div id="screen-auth" class="fixed inset-0 z-[100] bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 flex items-center justify-center p-4 overflow-y-auto">
+  <div class="w-full max-w-md">
+    <div class="text-center mb-8">
+      <div class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto shadow-2xl mb-4">
+        <i class="fa-solid fa-wand-magic-sparkles text-4xl text-emerald-600"></i>
+      </div>
+      <h1 class="text-3xl font-black text-white">Diarista<span class="text-emerald-300">Fácil</span></h1>
+      <p class="text-emerald-100 text-xs font-bold uppercase tracking-widest mt-1 flex items-center justify-center gap-1"><i class="fa-solid fa-location-dot"></i> Rio de Janeiro - RJ</p>
+    </div>
+    <div class="bg-white rounded-3xl p-6 shadow-2xl">
+      <div class="grid grid-cols-2 gap-2 mb-5 bg-slate-100 p-1 rounded-xl">
+        <button id="tab-login" onclick="setAuthMode('login')" class="py-2.5 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all"><i class="fa-solid fa-right-to-bracket mr-1"></i> Entrar</button>
+        <button id="tab-register" onclick="setAuthMode('register')" class="py-2.5 rounded-lg text-xs font-bold text-slate-500 transition-all"><i class="fa-solid fa-user-plus mr-1"></i> Cadastrar</button>
+      </div>
+      <div id="tipo-conta" class="hidden mb-4">
+        <p class="text-[10px] font-bold text-slate-500 uppercase mb-2 text-center">Você é:</p>
+        <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1 rounded-xl">
+          <button id="tipo-cliente" onclick="setUserType('cliente')" class="py-2 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all"><i class="fa-solid fa-user mr-1"></i> Cliente</button>
+          <button id="tipo-diarista" onclick="setUserType('diarista')" class="py-2 rounded-lg text-xs font-bold text-slate-500 transition-all"><i class="fa-solid fa-broom mr-1"></i> Diarista</button>
+        </div>
+      </div>
+      <form id="form-auth" onsubmit="handleAuth(event)" class="space-y-3">
+        <div id="field-name" class="hidden">
+          <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Nome completo</label>
+          <input type="text" id="in-name" placeholder="Seu nome" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">E-mail</label>
+          <input type="email" id="in-email" placeholder="seuemail@exemplo.com" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Senha</label>
+          <input type="password" id="in-password" placeholder="Mínimo 6 caracteres" required minlength="6" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
+        </div>
+        <div id="diarista-fields" class="hidden space-y-3 border-t border-slate-200 pt-3">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Região que atende</label>
+            <select id="in-region" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
+              <option value="Recreio / Barra">Recreio / Barra</option>
+              <option value="Zona Sul">Zona Sul</option>
+              <option value="Zona Oeste">Zona Oeste</option>
+              <option value="Zona Norte">Zona Norte</option>
+              <option value="Todas as regiões">Todas as regiões</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Preço base (R$)</label>
+            <input type="number" id="in-price" placeholder="Ex: 150" min="50" max="500" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Bio</label>
+            <textarea id="in-bio" rows="2" placeholder="Sua experiência..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium"></textarea>
+          </div>
+        </div>
+        <label class="flex items-center gap-2 cursor-pointer text-slate-600 font-medium text-xs">
+          <input type="checkbox" id="in-remember" checked class="rounded border-slate-300 text-emerald-600"><span>Lembrar de mim</span>
+        </label>
+        <button type="submit" id="btn-submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-xl shadow-lg shadow-emerald-200 transition-all btn-tap">Entrar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="app-wrapper" class="hidden min-h-screen flex flex-col">
+  <header class="sticky top-0 z-40 glass-effect border-b border-emerald-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('home')">
+        <div class="bg-emerald-600 text-white p-2 rounded-xl"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="flex flex-col">
+          <span class="font-black text-lg text-emerald-950 leading-none">Diarista<span class="text-emerald-600">Fácil</span></span>
+          <span class="text-[9px] font-bold text-emerald-700 uppercase flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot"></i> RJ</span>
+        </div>
+      </div>
+      <button onclick="showSection('perfil')" class="flex items-center gap-2 bg-emerald-100 hover:bg-emerald-200 border border-emerald-200 px-3 py-1.5 rounded-xl transition-all btn-tap">
+        <i class="fa-solid fa-user-circle text-emerald-700 text-lg"></i>
+        <span id="nav-name" class="text-xs font-black text-emerald-950 uppercase max-w-[80px] truncate">Você</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-emerald-100 shadow-2xl">
+    <div class="max-w-7xl mx-auto grid grid-cols-4 text-center">
+      <button onclick="showSection('home')" class="nav-btn py-3 text-slate-400 hover:text-emerald-600 transition-colors" data-nav="home"><i class="fa-solid fa-house text-lg block"></i><span class="text-[10px] font-bold">Início</span></button>
+      <button onclick="scrollToSimulate()" class="nav-btn py-3 text-slate-400 hover:text-emerald-600 transition-colors" data-nav="simulador"><i class="fa-solid fa-calculator text-lg block"></i><span class="text-[10px] font-bold">Simular</span></button>
+      <button onclick="showSection('diaristas')" class="nav-btn py-3 text-slate-400 hover:text-emerald-600 transition-colors" data-nav="diaristas"><i class="fa-solid fa-broom text-lg block"></i><span class="text-[10px] font-bold">Diaristas</span></button>
+      <button onclick="showSection('perfil')" class="nav-btn py-3 text-slate-400 hover:text-emerald-600 transition-colors" data-nav="perfil"><i class="fa-solid fa-user text-lg block"></i><span class="text-[10px] font-bold">Perfil</span></button>
+    </div>
+  </nav>
+
+  <main class="flex-grow pb-20">
+    <section id="sec-home" class="py-6 bg-gradient-to-br from-emerald-100/60 via-white to-green-50 min-h-screen">
+      <div class="max-w-7xl mx-auto px-4">
+        <div id="welcome-banner" class="mb-6 p-5 bg-gradient-to-r from-emerald-600 to-teal-700 rounded-3xl text-white shadow-lg fade-in">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold text-emerald-100 mb-2"><i class="fa-solid fa-circle-check"></i> <span id="welcome-role">Cliente</span></div>
+          <h2 class="text-2xl font-black flex items-center gap-2">👋 <span id="welcome-name">Olá!</span></h2>
+          <p class="text-emerald-100 text-xs mt-1" id="welcome-msg">Bem-vindo!</p>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <button onclick="scrollToSimulate()" class="bg-emerald-600 text-white font-black px-4 py-3.5 rounded-2xl shadow-lg flex items-center justify-center gap-2 text-xs btn-tap"><i class="fa-solid fa-calculator"></i> Simular</button>
+          <button onclick="showSection('diaristas')" class="bg-white border border-slate-300 text-slate-800 font-bold px-4 py-3.5 rounded-2xl shadow-sm flex items-center justify-center gap-2 text-xs btn-tap"><i class="fa-solid fa-user-check text-emerald-600"></i> Diaristas</button>
+        </div>
+        <div id="simulador" class="mt-8 bg-white rounded-3xl p-5 shadow-xl border border-emerald-100">
+          <form onsubmit="event.preventDefault();" class="space-y-4">
+            <div>
+              <label class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Região</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" onclick="setRegion('recreio',this)" class="region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all">Recreio</button>
+                <button type="button" onclick="setRegion('barra',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Barra</button>
+                <button type="button" onclick="setRegion('zonasul',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Sul</button>
+                <button type="button" onclick="setRegion('zonaoeste',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Oeste</button>
+                <button type="button" onclick="setRegion('zonanorte',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Norte</button>
+                <button type="button" onclick="setRegion('outro',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Outro</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Quartos</label>
+              <div class="grid grid-cols-4 gap-2">
+                <button type="button" onclick="setRooms(1,this)" class="room-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all">1</button>
+                <button type="button" onclick="setRooms(2,this)" class="room-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">2</button>
+                <button type="button" onclick="setRooms(3,this)" class="room-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">3</button>
+                <button type="button" onclick="setRooms(4,this)" class="room-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">4+</button>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-950 to-slate-900 text-white rounded-2xl p-4 flex justify-between items-center">
+              <div>
+                <span class="text-[10px] text-emerald-300 font-bold uppercase">Total</span>
+                <div id="res-total" class="text-3xl font-black text-emerald-400">R$ 130</div>
+              </div>
+              <button onclick="confirmBooking()" class="bg-emerald-500 text-emerald-950 font-black py-3 px-4 rounded-xl text-xs btn-tap">Agendar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-diaristas" class="hidden py-6 max-w-7xl mx-auto px-4 min-h-screen">
+      <h2 class="text-xl font-black text-slate-900 mb-4">Diaristas no RJ</h2>
+      <div id="cleaners-list" class="grid grid-cols-1 gap-4"></div>
+    </section>
+
+    <section id="sec-perfil" class="hidden py-6 max-w-3xl mx-auto px-4 min-h-screen">
+      <div id="perfil-content"></div>
+    </section>
+  </main>
+</div>
+
+<div id="modal-msg" class="hidden fixed inset-0 z-[110] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl fade-in">
+    <h3 id="modal-title" class="text-lg font-black text-slate-900">Sucesso</h3>
+    <p id="modal-body" class="text-xs text-slate-600 mt-2 leading-relaxed"></p>
+    <button onclick="closeModal()" class="mt-4 w-full bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-xs btn-tap">OK</button>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "COLE_AQUI";
+const SUPABASE_ANON_KEY = "COLE_AQUI";
+let supabaseClient = null;
+try { if (window.supabase && SUPABASE_URL !== "COLE_AQUI") supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e) {}
+
+let authMode = 'login';
+let userType = 'cliente';
+let currentUser = null;
+let currentRegion = 'recreio';
+let currentRooms = 1;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("df_user");
+  if (saved) { try { currentUser = JSON.parse(saved); enterApp(); } catch(e){} }
+  setAuthMode('login');
+  renderCleaners();
+});
+
+function setAuthMode(mode) {
+  authMode = mode;
+  const isLogin = mode === 'login';
+  document.getElementById('tab-login').className = isLogin ? "py-2.5 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all" : "py-2.5 rounded-lg text-xs font-bold text-slate-500 transition-all";
+  document.getElementById('tab-register').className = !isLogin ? "py-2.5 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all" : "py-2.5 rounded-lg text-xs font-bold text-slate-500 transition-all";
+  document.getElementById('field-name').classList.toggle('hidden', isLogin);
+  document.getElementById('tipo-conta').classList.toggle('hidden', isLogin);
+  document.getElementById('diarista-fields').classList.toggle('hidden', isLogin || userType !== 'diarista');
+  document.getElementById('btn-submit').textContent = isLogin ? 'Entrar' : 'Criar Conta';
+  document.getElementById('in-name').required = !isLogin;
+}
+
+function setUserType(type) {
+  userType = type;
+  const isCli = type === 'cliente';
+  document.getElementById('tipo-cliente').className = isCli ? "py-2 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all" : "py-2 rounded-lg text-xs font-bold text-slate-500 transition-all";
+  document.getElementById('tipo-diarista').className = !isCli ? "py-2 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-sm transition-all" : "py-2 rounded-lg text-xs font-bold text-slate-500 transition-all";
+  document.getElementById('diarista-fields').classList.toggle('hidden', authMode === 'login' || type !== 'diarista');
+}
+
+async function handleAuth(e) {
+  e.preventDefault();
+  const email = document.getElementById('in-email').value.trim().toLowerCase();
+  const password = document.getElementById('in-password').value;
+  const name = document.getElementById('in-name').value.trim();
+
+  if (authMode === 'login') {
+    let user = null;
+    if (supabaseClient) {
+      const { data } = await supabaseClient.from('users_app').select('*').eq('email', email).eq('password', password).maybeSingle();
+      user = data;
+    } else {
+      const all = JSON.parse(localStorage.getItem('df_users') || '[]');
+      user = all.find(u => u.email === email && u.password === password);
+    }
+    if (!user) { alert('E-mail ou senha incorretos.'); return; }
+    currentUser = user;
+  } else {
+    const newUser = {
+      id: Date.now().toString(), name: name || 'Usuário', email, password, type: userType,
+      region: userType === 'diarista' ? document.getElementById('in-region').value : null,
+      price: userType === 'diarista' ? Number(document.getElementById('in-price').value) || 150 : null,
+      bio: userType === 'diarista' ? document.getElementById('in-bio').value : null
+    };
+    if (supabaseClient) {
+      await supabaseClient.from('users_app').insert([newUser]);
+    } else {
+      const all = JSON.parse(localStorage.getItem('df_users') || '[]');
+      if (all.find(u => u.email === email)) { alert('E-mail já cadastrado.'); return; }
+      all.push(newUser);
+      localStorage.setItem('df_users', JSON.stringify(all));
+    }
+    currentUser = newUser;
+  }
+  localStorage.setItem('df_user', JSON.stringify(currentUser));
+  enterApp();
+}
+
+function enterApp() {
+  document.getElementById('screen-auth').classList.add('hidden');
+  document.getElementById('app-wrapper').classList.remove('hidden');
+  document.getElementById('nav-name').textContent = currentUser.name.split(' ')[0];
+  document.getElementById('welcome-name').textContent = `Olá, ${currentUser.name.split(' ')[0]}!`;
+  document.getElementById('welcome-role').textContent = currentUser.type;
+  calculatePrice();
+  renderPerfil();
+  showSection('home');
+}
+
+function logout() {
+  localStorage.removeItem('df_user');
+  currentUser = null;
+  document.getElementById('app-wrapper').classList.add('hidden');
+  document.getElementById('screen-auth').classList.remove('hidden');
+  setAuthMode('login');
+}
+
+function showSection(id) {
+  ['sec-home', 'sec-diaristas', 'sec-perfil'].forEach(sec => {
+    const el = document.getElementById(sec);
+    if(el) el.classList.add('hidden');
+  });
+  const target = document.getElementById(`sec-${id}`);
+  if(target) target.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function scrollToSimulate() {
+  showSection('home');
+  setTimeout(() => { document.getElementById('simulador').scrollIntoView({behavior:'smooth'}); }, 100);
+}
+
+function setRegion(reg, btn) {
+  currentRegion = reg;
+  document.querySelectorAll('.region-btn').forEach(b => b.className = "region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all");
+  btn.className = "region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all";
+  calculatePrice();
+}
+
+function setRooms(num, btn) {
+  currentRooms = num;
+  document.querySelectorAll('.room-btn').forEach(b => b.className = "room-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all");
+  btn.className = "room-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all";
+  calculatePrice();
+}
+
+function calculatePrice() {
+  let base = 110;
+  if(currentRooms === 2) base += 35;
+  if(currentRooms === 3) base += 65;
+  if(currentRooms === 4) base += 100;
+  document.getElementById('res-total').textContent = `R$ ${base}`;
+}
+
+function confirmBooking() {
+  alert(`Agendamento solicitado para ${currentUser.name}!`);
+}
+
+function renderCleaners() {
+  const box = document.getElementById('cleaners-list');
+  if(!box) return;
+  box.innerHTML = `
+    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex gap-3 items-center">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" class="w-14 h-14 rounded-full object-cover">
+      <div class="flex-1"><h3 class="font-bold text-sm">Ana Paula</h3><p class="text-[10px] text-slate-500">Recreio / Barra</p></div>
+      <div class="text-right"><p class="text-xs font-black text-emerald-700">R$ 150</p><button class="bg-emerald-600 text-white text-[10px] px-3 py-1 rounded">Agendar</button></div>
+    </div>
+  `;
+}
+
+function renderPerfil() {
+  if(!currentUser) return;
+  document.getElementById('perfil-content').innerHTML = `
+    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 text-center">
+      <h2 class="text-xl font-black text-slate-900">${currentUser.name}</h2>
+      <p class="text-xs text-slate-500">${currentUser.email}</p>
+      <p class="mt-2 text-xs font-bold text-emerald-600 uppercase">${currentUser.type}</p>
+      <button onclick="logout()" class="mt-6 w-full bg-rose-50 text-rose-600 font-bold py-2.5 rounded-xl text-xs">Sair da Conta</button>
+    </div>
+  `;
+}
+
+function closeModal() { document.getElementById('modal-msg').classList.add('hidden'); }
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(e => {}); }
+</script>
+</body>
+  </html>
