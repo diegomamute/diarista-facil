@@ -65,10 +65,12 @@
           <div>
             <label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase">Região que atende</label>
             <select id="in-region" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-medium">
-              <option value="Recreio / Barra">Recreio / Barra</option>
+              <option value="Recreio dos Bandeirantes">Recreio dos Bandeirantes</option>
+              <option value="Barra da Tijuca">Barra da Tijuca</option>
               <option value="Zona Sul">Zona Sul</option>
               <option value="Zona Oeste">Zona Oeste</option>
               <option value="Zona Norte">Zona Norte</option>
+              <option value="Centro">Centro</option>
               <option value="Todas as regiões">Todas as regiões</option>
             </select>
           </div>
@@ -85,6 +87,7 @@
           <input type="checkbox" id="in-remember" checked class="rounded border-slate-300 text-emerald-600"><span>Lembrar de mim</span>
         </label>
         <button type="submit" id="btn-submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-xl shadow-lg shadow-emerald-200 transition-all btn-tap">Entrar</button>
+        <button type="button" id="forgot-password" onclick="forgotPassword()" class="w-full text-emerald-700 hover:text-emerald-900 text-xs font-bold py-2 underline underline-offset-2">Esqueci minha senha</button>
       </form>
     </div>
   </div>
@@ -131,14 +134,26 @@
         <div id="simulador" class="mt-8 bg-white rounded-3xl p-5 shadow-xl border border-emerald-100">
           <form onsubmit="event.preventDefault();" class="space-y-4">
             <div>
+              <label class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Tipo de imóvel</label>
+              <select id="property-type" onchange="setProperty(this.value)" class="w-full border-2 border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-700 outline-none focus:border-emerald-500">
+                <option value="kitnet">Kitnet</option><option value="apartamento" selected>Apartamento</option><option value="casa">Casa</option><option value="escritorio">Escritório</option>
+              </select>
+            </div>
+            <div>
               <label class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Região</label>
               <div class="grid grid-cols-3 gap-2">
                 <button type="button" onclick="setRegion('recreio',this)" class="region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all">Recreio</button>
                 <button type="button" onclick="setRegion('barra',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Barra</button>
-                <button type="button" onclick="setRegion('zonasul',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Sul</button>
-                <button type="button" onclick="setRegion('zonaoeste',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Oeste</button>
-                <button type="button" onclick="setRegion('zonanorte',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Z. Norte</button>
-                <button type="button" onclick="setRegion('outro',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Outro</button>
+                <button type="button" onclick="setRegion('zonasul',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Zona Sul</button>
+                <button type="button" onclick="setRegion('zonaoeste',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Zona Oeste</button>
+                <button type="button" onclick="setRegion('zonanorte',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Zona Norte</button>
+                <button type="button" onclick="setRegion('centro',this)" class="region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">Centro</button>
+              </div>
+              <div class="mt-3">
+                <label for="neighborhood" class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Bairro do imóvel</label>
+                <select id="neighborhood" onchange="setNeighborhood(this.value)" class="w-full border-2 border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-700 outline-none focus:border-emerald-500">
+                  <option value="Recreio dos Bandeirantes">Recreio dos Bandeirantes</option><option value="Barra da Tijuca">Barra da Tijuca</option><option value="Vargem Pequena">Vargem Pequena</option><option value="Vargem Grande">Vargem Grande</option><option value="Jacarepaguá">Jacarepaguá</option><option value="Campo Grande">Campo Grande</option><option value="Bangu">Bangu</option><option value="Copacabana">Copacabana</option><option value="Ipanema">Ipanema</option><option value="Leblon">Leblon</option><option value="Botafogo">Botafogo</option><option value="Flamengo">Flamengo</option><option value="Laranjeiras">Laranjeiras</option><option value="Tijuca">Tijuca</option><option value="Méier">Méier</option><option value="Madureira">Madureira</option><option value="Centro">Centro</option><option value="Outro bairro">Outro bairro</option>
+                </select>
               </div>
             </div>
             <div>
@@ -150,21 +165,35 @@
                 <button type="button" onclick="setRooms(4,this)" class="room-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all">4+</button>
               </div>
             </div>
+            <div>
+              <label class="block text-[10px] font-bold text-emerald-900 uppercase mb-2">Banheiros</label>
+              <select id="bathrooms" onchange="setBathrooms(this.value)" class="w-full border-2 border-slate-200 rounded-xl p-3 text-sm font-bold text-slate-700 outline-none focus:border-emerald-500">
+                <option value="1">1 banheiro</option><option value="2">2 banheiros</option><option value="3">3 banheiros</option><option value="4">4 ou mais banheiros</option>
+              </select>
+            </div>
             <div class="bg-gradient-to-br from-emerald-950 to-slate-900 text-white rounded-2xl p-4 flex justify-between items-center">
               <div>
                 <span class="text-[10px] text-emerald-300 font-bold uppercase">Total</span>
-                <div id="res-total" class="text-3xl font-black text-emerald-400">R$ 130</div>
+                <div id="res-total" class="text-3xl font-black text-emerald-400">R$ 220</div>
               </div>
               <button onclick="confirmBooking()" class="bg-emerald-500 text-emerald-950 font-black py-3 px-4 rounded-xl text-xs btn-tap">Agendar</button>
             </div>
           </form>
         </div>
+        <div class="mt-6 bg-white rounded-3xl p-5 shadow-sm border border-emerald-100">
+          <h3 class="text-lg font-black text-slate-900">Tabela de preços estimados</h3>
+          <p class="text-xs text-slate-500 mt-1 mb-3">Valores iniciais de demonstração; o orçamento muda conforme quartos e banheiros.</p>
+          <div class="overflow-x-auto custom-scroll"><table class="w-full text-xs text-left"><thead><tr class="bg-emerald-50 text-emerald-900"><th class="p-3 rounded-l-lg">Imóvel</th><th class="p-3">Demais regiões</th><th class="p-3 rounded-r-lg">Barra / Zona Sul</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><td class="p-3 font-bold">Kitnet</td><td class="p-3">A partir de R$ 180</td><td class="p-3">A partir de R$ 220</td></tr><tr><td class="p-3 font-bold">Apartamento (1–2 quartos)</td><td class="p-3">A partir de R$ 220</td><td class="p-3">A partir de R$ 250</td></tr><tr><td class="p-3 font-bold">Casa</td><td class="p-3">R$ 280–300</td><td class="p-3">A partir de R$ 300</td></tr><tr><td class="p-3 font-bold">Escritório</td><td class="p-3">A partir de R$ 220</td><td class="p-3">A partir de R$ 280</td></tr></tbody></table></div>
+          <p class="text-[10px] text-slate-500 mt-3">Valores iniciais estimados. Imóveis maiores, mais banheiros, sujeira pesada ou serviços extras podem aumentar o orçamento. Confirmar os preços finais antes de publicar.</p>
+        </div>
       </div>
     </section>
 
     <section id="sec-diaristas" class="hidden py-6 max-w-7xl mx-auto px-4 min-h-screen">
-      <h2 class="text-xl font-black text-slate-900 mb-4">Diaristas no RJ</h2>
-      <div id="cleaners-list" class="grid grid-cols-1 gap-4"></div>
+      <h2 class="text-xl font-black text-slate-900 mb-1">Diaristas no RJ</h2>
+      <p class="text-xs text-slate-500 mb-4">Consulte região, apresentação e preço base das profissionais cadastradas.</p>
+      <div class="bg-white rounded-2xl border border-emerald-100 p-4 mb-4"><h3 class="font-black text-sm mb-2">Tabela de preços estimados</h3><div class="grid grid-cols-2 gap-2 text-xs"><div class="bg-emerald-50 rounded-lg p-3">Kitnet <b class="block text-emerald-800">R$ 180–220</b></div><div class="bg-emerald-50 rounded-lg p-3">Apartamento 1–2 quartos <b class="block text-emerald-800">A partir de R$ 220</b></div><div class="bg-emerald-50 rounded-lg p-3">Casa <b class="block text-emerald-800">R$ 280–300+</b></div><div class="bg-emerald-50 rounded-lg p-3">Escritório <b class="block text-emerald-800">A partir de R$ 220</b></div></div><p class="text-[10px] text-slate-500 mt-2">Barra da Tijuca e Zona Sul podem ter valores maiores, a partir de R$ 250 para apartamentos e R$ 300 para casas.</p></div>
+      <div id="cleaners-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </section>
 
     <section id="sec-perfil" class="hidden py-6 max-w-3xl mx-auto px-4 min-h-screen">
@@ -182,8 +211,8 @@
 </div>
 
 <script>
-const SUPABASE_URL = "https://uwvlwozdmjeqijdbvhdl.supabase.co";
-const SUPABASE_ANON_KEY = sb_publishable_dkYVbMlsDNsiKfURijYC8A_uBSP-1Rw";
+const SUPABASE_URL = "COLE_AQUI";
+const SUPABASE_ANON_KEY = "COLE_AQUI";
 let supabaseClient = null;
 try { if (window.supabase && SUPABASE_URL !== "COLE_AQUI") supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e) {}
 
@@ -191,7 +220,10 @@ let authMode = 'login';
 let userType = 'cliente';
 let currentUser = null;
 let currentRegion = 'recreio';
+let currentNeighborhood = 'Recreio dos Bandeirantes';
 let currentRooms = 1;
+let currentBathrooms = 1;
+let currentProperty = 'apartamento';
 
 document.addEventListener("DOMContentLoaded", () => {
   const saved = localStorage.getItem("df_user");
@@ -256,6 +288,21 @@ async function handleAuth(e) {
   }
   localStorage.setItem('df_user', JSON.stringify(currentUser));
   enterApp();
+  renderCleaners();
+}
+
+async function forgotPassword() {
+  const email = document.getElementById('in-email').value.trim().toLowerCase();
+  if (!email) { alert('Digite seu e-mail no campo acima e toque em “Esqueci minha senha”.'); document.getElementById('in-email').focus(); return; }
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+      if (error) throw error;
+      alert('Se esse e-mail estiver cadastrado, você receberá uma mensagem com as instruções para redefinir a senha. Confira também o spam.');
+    } catch (err) { alert('Não foi possível enviar o e-mail de recuperação. Verifique a configuração de autenticação do Supabase.'); }
+    return;
+  }
+  alert('A recuperação por e-mail ficará disponível quando conectarmos o Diarista Fácil ao Supabase. Nesta versão de demonstração, não há envio real de e-mail. Não compartilhe sua senha com ninguém.');
 }
 
 function enterApp() {
@@ -295,7 +342,28 @@ function scrollToSimulate() {
 function setRegion(reg, btn) {
   currentRegion = reg;
   document.querySelectorAll('.region-btn').forEach(b => b.className = "region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all");
-  btn.className = "region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all";
+  if (btn) btn.className = "region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all";
+  const neighborhoods = {
+    recreio:['Recreio dos Bandeirantes','Vargem Pequena','Vargem Grande'],
+    barra:['Barra da Tijuca'],
+    zonasul:['Copacabana','Ipanema','Leblon','Botafogo','Flamengo','Laranjeiras'],
+    zonaoeste:['Jacarepaguá','Campo Grande','Bangu'],
+    zonanorte:['Tijuca','Méier','Madureira'],
+    centro:['Centro']
+  };
+  const select = document.getElementById('neighborhood');
+  if (select) { const list = neighborhoods[reg] || ['Outro bairro']; select.innerHTML = list.map(n => `<option value="${n}">${n}</option>`).join('') + '<option value="Outro bairro">Outro bairro</option>'; currentNeighborhood = select.value; }
+  calculatePrice();
+}
+function setNeighborhood(value) {
+  currentNeighborhood = value;
+  if (/Barra da Tijuca/.test(value)) currentRegion = 'barra';
+  else if (['Copacabana','Ipanema','Leblon','Botafogo','Flamengo','Laranjeiras'].includes(value)) currentRegion = 'zonasul';
+  else if (['Tijuca','Méier','Madureira'].includes(value)) currentRegion = 'zonanorte';
+  else if (value === 'Centro') currentRegion = 'centro';
+  else if (['Jacarepaguá','Campo Grande','Bangu'].includes(value)) currentRegion = 'zonaoeste';
+  else currentRegion = 'recreio';
+  document.querySelectorAll('.region-btn').forEach(b => { const active = b.getAttribute('onclick')?.includes(`'${currentRegion}'`); b.className = active ? 'region-btn border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold p-2.5 rounded-xl text-[10px] transition-all' : 'region-btn border-2 border-slate-200 text-slate-700 font-bold p-2.5 rounded-xl text-[10px] transition-all'; });
   calculatePrice();
 }
 
@@ -306,44 +374,78 @@ function setRooms(num, btn) {
   calculatePrice();
 }
 
+function setProperty(value) { currentProperty = value; calculatePrice(); }
+function setBathrooms(value) { currentBathrooms = Number(value); calculatePrice(); }
+function money(value) { return value.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0}); }
 function calculatePrice() {
-  let base = 110;
-  if(currentRooms === 2) base += 35;
-  if(currentRooms === 3) base += 65;
-  if(currentRooms === 4) base += 100;
-  document.getElementById('res-total').textContent = `R$ ${base}`;
+  const premiumArea = ['barra','zonasul'].includes(currentRegion);
+  const bases = {
+    kitnet: premiumArea ? 220 : 180,
+    apartamento: premiumArea ? 250 : 220,
+    casa: premiumArea ? 300 : 280,
+    escritorio: premiumArea ? 280 : 220
+  };
+  let total = bases[currentProperty] || 220;
+  if (currentProperty === 'apartamento') total += Math.max(0, currentRooms - 2) * 40;
+  else if (currentProperty === 'casa') total += Math.max(0, currentRooms - 2) * 30;
+  else if (currentProperty === 'escritorio') total += Math.max(0, currentRooms - 1) * 40;
+  total += Math.max(0, currentBathrooms - 1) * 20;
+  const out = document.getElementById('res-total');
+  if (out) out.textContent = money(total);
+  return total;
 }
-
 function confirmBooking() {
-  alert(`Agendamento solicitado para ${currentUser.name}!`);
+  if (!currentUser) { alert('Entre na sua conta para continuar.'); return; }
+  const date = prompt('Qual a data desejada? (ex.: 15/11/2026)');
+  if (!date) return;
+  const time = prompt('Qual horário desejado? (ex.: 09:00)');
+  if (!time) return;
+  const propertyNames = {kitnet:'Kitnet', apartamento:'Apartamento', casa:'Casa', escritorio:'Escritório'};
+  const booking = {id:Date.now(), client:currentUser.name, property:propertyNames[currentProperty], region:currentRegion, neighborhood:currentNeighborhood, rooms:currentRooms, bathrooms:currentBathrooms, price:calculatePrice(), date, time, status:'Solicitação criada'};
+  const all = JSON.parse(localStorage.getItem('df_bookings') || '[]');
+  all.push(booking); localStorage.setItem('df_bookings', JSON.stringify(all));
+  alert(`Solicitação registrada neste aparelho!\n\n${booking.property} - ${booking.neighborhood}\nData: ${date} às ${time}\nValor estimado: ${money(booking.price)}\n\nAinda não é uma reserva confirmada nem um pagamento.`);
 }
-
 function renderCleaners() {
   const box = document.getElementById('cleaners-list');
   if(!box) return;
-  box.innerHTML = `
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex gap-3 items-center">
-      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" class="w-14 h-14 rounded-full object-cover">
-      <div class="flex-1"><h3 class="font-bold text-sm">Ana Paula</h3><p class="text-[10px] text-slate-500">Recreio / Barra</p></div>
-      <div class="text-right"><p class="text-xs font-black text-emerald-700">R$ 150</p><button class="bg-emerald-600 text-white text-[10px] px-3 py-1 rounded">Agendar</button></div>
-    </div>
-  `;
+  const users = JSON.parse(localStorage.getItem('df_users') || '[]').filter(u => u.type === 'diarista');
+  const demos = [
+    {name:'Ana Paula (exemplo)', email:'', region:'Recreio / Barra', price:150, bio:'Perfil demonstrativo para visualizar como a lista ficará.'},
+    {name:'Mariana (exemplo)', email:'', region:'Zona Sul', price:160, bio:'Perfil demonstrativo. Não é uma profissional verificada.'}
+  ];
+  const cleaners = [...users, ...demos];
+  box.innerHTML = cleaners.map((c, i) => `<article class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex gap-3 items-start"><div class="w-14 h-14 shrink-0 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl"><i class="fa-solid fa-user"></i></div><div class="flex-1 min-w-0"><h3 class="font-black text-sm">${escapeHTML(c.name || 'Diarista')}</h3><p class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot text-emerald-600"></i> ${escapeHTML(c.region || 'Região não informada')}</p><p class="text-xs text-slate-600 mt-2">${escapeHTML(c.bio || 'Profissional cadastrada na plataforma.')}</p><p class="text-[9px] text-amber-700 mt-2">${c.name && c.name.includes('(exemplo)') ? 'PERFIL DE DEMONSTRAÇÃO' : 'Cadastro local — verificação pendente'}</p></div><div class="text-right shrink-0"><p class="text-xs font-black text-emerald-700">${money(Number(c.price) || 150)}</p><button onclick="chooseCleaner('${String(c.id || '').replace(/'/g, '')}')" class="mt-2 bg-emerald-600 text-white text-[10px] font-bold px-3 py-2 rounded-lg">Consultar</button></div></article>`).join('');
+}
+function escapeHTML(value) { return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function chooseCleaner(id) {
+  const users = JSON.parse(localStorage.getItem('df_users') || '[]').filter(u => u.type === 'diarista');
+  const cleaner = users.find(u => String(u.id) === String(id));
+  if (!cleaner) { alert('Este é um perfil de demonstração. Cadastre uma diarista para testar a seleção de profissionais reais.'); return; }
+  alert(`Você selecionou ${cleaner.name}. Próximo passo: conectar a agenda e o agendamento ao banco de dados.`);
+  scrollToSimulate();
 }
 
 function renderPerfil() {
   if(!currentUser) return;
   document.getElementById('perfil-content').innerHTML = `
     <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 text-center">
-      <h2 class="text-xl font-black text-slate-900">${currentUser.name}</h2>
-      <p class="text-xs text-slate-500">${currentUser.email}</p>
-      <p class="mt-2 text-xs font-bold text-emerald-600 uppercase">${currentUser.type}</p>
+      <h2 id="profile-name" class="text-xl font-black text-slate-900"></h2>
+      <p id="profile-email" class="text-xs text-slate-500"></p>
+      <p id="profile-type" class="mt-2 text-xs font-bold text-emerald-600 uppercase"></p>
+      <div class="mt-5 text-left bg-emerald-50 rounded-xl p-3"><h3 class="font-black text-sm">Meus pedidos neste aparelho</h3><div id="my-bookings" class="text-xs text-slate-600 mt-2"></div></div>
       <button onclick="logout()" class="mt-6 w-full bg-rose-50 text-rose-600 font-bold py-2.5 rounded-xl text-xs">Sair da Conta</button>
     </div>
   `;
+  document.getElementById('profile-name').textContent = currentUser.name;
+  document.getElementById('profile-email').textContent = currentUser.email;
+  document.getElementById('profile-type').textContent = currentUser.type;
+  const bookings = JSON.parse(localStorage.getItem('df_bookings') || '[]').filter(b => b.client === currentUser.name);
+  document.getElementById('my-bookings').innerHTML = bookings.length ? bookings.map(b => `<p class="border-b border-emerald-100 py-2">${escapeHTML(b.property)} — ${escapeHTML(b.neighborhood || b.region || '')} — ${escapeHTML(b.date)} ${escapeHTML(b.time)} — <b>${money(Number(b.price))}</b> <span class="block text-[10px]">${escapeHTML(b.status)}</span></p>`).join('') : 'Nenhum pedido registrado ainda.';
 }
 
 function closeModal() { document.getElementById('modal-msg').classList.add('hidden'); }
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(e => {}); }
 </script>
 </body>
-</html>
+               </html>
