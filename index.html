@@ -224,11 +224,55 @@ let currentRooms = 1;
 let currentBathrooms = 1;
 let currentProperty = 'apartamento';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("df_user");
-  if (saved) { try { currentUser = JSON.parse(saved); enterApp(); } catch(e){} }
-  setAuthMode('login');
+document.addEventListener("DOMContentLoaded", async () => {
+  localStorage.removeItem("df_user");
+  setAuthMode("login");
   renderCleaners();
+
+  if (!supabaseClient) {
+    alert("Não foi possível conectar ao Supabase. Verifique a configuração.");
+    return;
+  }
+
+  try {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    if (error) throw error;
+
+    const session = data.session;
+
+    if (!session || !session.user) return;
+
+    const authUser = session.user;
+
+    const { data: perfil, error: perfilError } = await supabaseClient
+      .from("perfis")
+      .select("id,nome,tipo,telefone,bairro")
+      .eq("id", authUser.id)
+      .maybeSingle();
+
+    if (perfilError) throw perfilError;
+
+    const meta = authUser.user_metadata || {};
+
+    currentUser = {
+      id: authUser.id,
+      name: perfil?.nome || meta.nome || authUser.email.split("@")[0],
+      email: authUser.email,
+      type: perfil?.tipo || meta.tipo || "cliente",
+      region: perfil?.bairro || meta.bairro || null,
+      phone: perfil?.telefone || null
+    };
+
+    userType = currentUser.type;
+
+    enterApp();
+    renderCleaners();
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao verificar a sessão: " + err.message);
+  }
 });
 
 function setAuthMode(mode) {
