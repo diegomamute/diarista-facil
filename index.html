@@ -289,7 +289,6 @@ async function handleAuth(e) {
   enterApp();
   renderCleaners();
 }
-
 async function forgotPassword() {
   const email = document.getElementById('in-email').value.trim().toLowerCase();
   if (!email) { alert('Digite seu e-mail no campo acima e toque em “Esqueci minha senha”.'); document.getElementById('in-email').focus(); return; }
