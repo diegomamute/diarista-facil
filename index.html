@@ -295,44 +295,122 @@ function setUserType(type) {
   document.getElementById('diarista-fields').classList.toggle('hidden', authMode === 'login' || type !== 'diarista');
 }
 
+
 async function handleAuth(e) {
   e.preventDefault();
-  const email = document.getElementById('in-email').value.trim().toLowerCase();
+
+  const email = document.getElementById('in-email')
+    .value.trim().toLowerCase();
   const password = document.getElementById('in-password').value;
   const name = document.getElementById('in-name').value.trim();
 
-  if (authMode === 'login') {
-    let user = null;
-    if (supabaseClient) {
-      const { data } = await supabaseClient.from('users_app').select('*').eq('email', email).eq('password', password).maybeSingle();
-      user = data;
-    } else {
-      const all = JSON.parse(localStorage.getItem('df_users') || '[]');
-      user = all.find(u => u.email === email && u.password === password);
-    }
-    if (!user) { alert('E-mail ou senha incorretos.'); return; }
-    currentUser = user;
-  } else {
-    const newUser = {
-      id: Date.now().toString(), name: name || 'Usuário', email, password, type: userType,
-      region: userType === 'diarista' ? document.getElementById('in-region').value : null,
-      price: userType === 'diarista' ? Number(document.getElementById('in-price').value) || 150 : null,
-      bio: userType === 'diarista' ? document.getElementById('in-bio').value : null
-    };
-    if (supabaseClient) {
-      await supabaseClient.from('users_app').insert([newUser]);
-    } else {
-      const all = JSON.parse(localStorage.getItem('df_users') || '[]');
-      if (all.find(u => u.email === email)) { alert('E-mail já cadastrado.'); return; }
-      all.push(newUser);
-      localStorage.setItem('df_users', JSON.stringify(all));
-    }
-    currentUser = newUser;
+  if (!supabaseClient) {
+    alert('Não foi possível conectar ao Supabase. Verifique a configuração.');
+    return;
   }
-  localStorage.setItem('df_user', JSON.stringify(currentUser));
-  enterApp();
-  renderCleaners();
+
+  if (!email || !password) {
+    alert('Digite seu e-mail e sua senha.');
+    return;
+  }
+
+  try {
+    let authUser;
+
+    if (authMode === 'login') {
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) throw error;
+
+      authUser = data.user;
+
+    } else {
+      const metadata = {
+        nome: name || 'Usuário',
+        tipo: userType,
+        bairro: userType === 'diarista'
+          ? document.getElementById('in-region').value
+          : ''
+      };
+
+      const { data, error } =
+        await supabaseClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: metadata
+          }
+        });
+
+      if (error) throw error;
+
+      if (!data.user) {
+        throw new Error('Não foi possível criar sua conta.');
+      }
+
+      if (!data.session) {
+        alert(
+          'Cadastro iniciado! Confira seu e-mail para confirmar a conta. ' +
+          'Depois, volte e faça login.'
+        );
+        return;
+      }
+
+      authUser = data.user;
+    }
+
+    const meta = authUser.user_metadata || {};
+
+    const { data: perfil, error: perfilError } =
+      await supabaseClient
+        .from('perfis')
+        .select('id,nome,tipo,telefone,bairro')
+        .eq('id', authUser.id)
+        .maybeSingle();
+
+    if (perfilError) throw perfilError;
+
+    if (!perfil && authMode === 'login') {
+      const { error } = await supabaseClient
+        .from('perfis')
+        .upsert({
+          id: authUser.id,
+          nome: meta.nome || 'Usuário',
+          tipo: meta.tipo || 'cliente'
+        }, {
+          onConflict: 'id'
+        });
+
+      if (error) throw error;
+    }
+
+    const dadosPerfil = perfil || {};
+
+    currentUser = {
+      id: authUser.id,
+      name: dadosPerfil.nome || meta.nome || 'Usuário',
+      email: authUser.email,
+      type: dadosPerfil.tipo || meta.tipo || userType,
+      region: dadosPerfil.bairro || meta.bairro || 'recreio',
+      phone: dadosPerfil.telefone || null
+    };
+
+    userType = currentUser.type;
+    localStorage.setItem('df_user', JSON.stringify(currentUser));
+
+    enterApp();
+    renderCleaners();
+
+  } catch (err) {
+    console.error('Erro de autenticação:', err);
+    alert('Não foi possível entrar ou cadastrar: ' + err.message);
+  }
 }
+
 async function forgotPassword() {
   const email = document.getElementById('in-email').value.trim().toLowerCase();
   if (!email) { alert('Digite seu e-mail no campo acima e toque em “Esqueci minha senha”.'); document.getElementById('in-email').focus(); return; }
