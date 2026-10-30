@@ -514,18 +514,74 @@ function calculatePrice() {
   if (out) out.textContent = money(total);
   return total;
 }
-function confirmBooking() {
-  if (!currentUser) { alert('Entre na sua conta para continuar.'); return; }
-  const date = prompt('Qual a data desejada? (ex.: 15/11/2026)');
+
+async function confirmBooking() {
+  if (!currentUser || !supabaseClient) {
+    alert('Entre na sua conta para continuar.');
+    return;
+  }
+
+  const date = prompt('Qual a data desejada? (DD/MM/AAAA)');
   if (!date) return;
+
+  const partes = date.split('/');
+  if (partes.length !== 3) {
+    alert('Digite a data no formato DD/MM/AAAA.');
+    return;
+  }
+
+  const dataSQL = `${partes[2]}-${partes[1]}-${partes[0]}`;
+
+  if (isNaN(Date.parse(dataSQL))) {
+    alert('Data inválida.');
+    return;
+  }
+
   const time = prompt('Qual horário desejado? (ex.: 09:00)');
   if (!time) return;
-  const propertyNames = {kitnet:'Kitnet', apartamento:'Apartamento', casa:'Casa', escritorio:'Escritório'};
-  const booking = {id:Date.now(), client:currentUser.name, property:propertyNames[currentProperty], region:currentRegion, neighborhood:currentNeighborhood, rooms:currentRooms, bathrooms:currentBathrooms, price:calculatePrice(), date, time, status:'Solicitação criada'};
-  const all = JSON.parse(localStorage.getItem('df_bookings') || '[]');
-  all.push(booking); localStorage.setItem('df_bookings', JSON.stringify(all));
-  alert(`Solicitação registrada neste aparelho!\n\n${booking.property} - ${booking.neighborhood}\nData: ${date} às ${time}\nValor estimado: ${money(booking.price)}\n\nAinda não é uma reserva confirmada nem um pagamento.`);
+
+  const propertyNames = {
+    kitnet: 'Kitnet',
+    apartamento: 'Apartamento',
+    casa: 'Casa',
+    escritorio: 'Escritório'
+  };
+
+  const booking = {
+    cliente_id: currentUser.id,
+    tipo_imovel: propertyNames[currentProperty],
+    quartos: currentRooms,
+    tipo_limpeza: 'Padrão',
+    bairro: currentNeighborhood,
+    data_servico: dataSQL,
+    periodo: time,
+    valor_estimado: calculatePrice(),
+    status: 'Solicitação criada'
+  };
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('agendamentos')
+      .insert([booking])
+      .select();
+
+    if (error) throw error;
+
+    alert(
+      'Agendamento salvo com sucesso no banco de dados!\n\n' +
+      'Imóvel: ' + booking.tipo_imovel +
+      '\nBairro: ' + booking.bairro +
+      '\nData: ' + date +
+      '\nHorário: ' + time +
+      '\nValor: ' + money(booking.valor_estimado)
+    );
+
+  } catch (error) {
+    console.error('Erro ao salvar agendamento:', error);
+    alert('Não foi possível salvar o agendamento: ' + error.message);
+  }
 }
+
 function renderCleaners() {
   const box = document.getElementById('cleaners-list');
   if(!box) return;
