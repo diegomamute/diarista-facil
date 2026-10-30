@@ -602,23 +602,95 @@ function chooseCleaner(id) {
   scrollToSimulate();
 }
 
-function renderPerfil() {
-  if(!currentUser) return;
-  document.getElementById('perfil-content').innerHTML = `
+
+async function renderPerfil() {
+  if (!currentUser) return;
+
+  const box = document.getElementById('perfil-content');
+
+  box.innerHTML = `
     <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 text-center">
-      <h2 id="profile-name" class="text-xl font-black text-slate-900"></h2>
-      <p id="profile-email" class="text-xs text-slate-500"></p>
-      <p id="profile-type" class="mt-2 text-xs font-bold text-emerald-600 uppercase"></p>
-      <div class="mt-5 text-left bg-emerald-50 rounded-xl p-3"><h3 class="font-black text-sm">Meus pedidos neste aparelho</h3><div id="my-bookings" class="text-xs text-slate-600 mt-2"></div></div>
-      <button onclick="logout()" class="mt-6 w-full bg-rose-50 text-rose-600 font-bold py-2.5 rounded-xl text-xs">Sair da Conta</button>
+      <h2 class="text-xl font-black text-slate-900">
+        ${escapeHTML(currentUser.name)}
+      </h2>
+
+      <p class="text-xs text-slate-500">
+        ${escapeHTML(currentUser.email)}
+      </p>
+
+      <p class="mt-2 text-xs font-bold text-emerald-600 uppercase">
+        ${escapeHTML(currentUser.type)}
+      </p>
+
+      <div class="mt-5 text-left bg-emerald-50 rounded-xl p-3">
+        <h3 class="font-black text-sm">Meus pedidos</h3>
+        <div id="my-bookings" class="text-xs text-slate-600 mt-2">
+          Carregando pedidos...
+        </div>
+      </div>
+
+      <button onclick="logout()"
+        class="mt-6 w-full bg-rose-50 text-rose-600 font-bold py-2.5 rounded-xl text-xs">
+        Sair da Conta
+      </button>
     </div>
   `;
-  document.getElementById('profile-name').textContent = currentUser.name;
-  document.getElementById('profile-email').textContent = currentUser.email;
-  document.getElementById('profile-type').textContent = currentUser.type;
-  const bookings = JSON.parse(localStorage.getItem('df_bookings') || '[]').filter(b => b.client === currentUser.name);
-  document.getElementById('my-bookings').innerHTML = bookings.length ? bookings.map(b => `<p class="border-b border-emerald-100 py-2">${escapeHTML(b.property)} — ${escapeHTML(b.neighborhood || b.region || '')} — ${escapeHTML(b.date)} ${escapeHTML(b.time)} — <b>${money(Number(b.price))}</b> <span class="block text-[10px]">${escapeHTML(b.status)}</span></p>`).join('') : 'Nenhum pedido registrado ainda.';
+
+  const list = document.getElementById('my-bookings');
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('agendamentos')
+      .select('id,cliente_id,tipo_imovel,quartos,tipo_limpeza,bairro,data_servico,periodo,valor_estimado,status,criado_em')
+      .eq('cliente_id', currentUser.id)
+      .order('criado_em', { ascending: false });
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      list.textContent = 'Nenhum pedido encontrado no banco de dados.';
+      return;
+    }
+
+    list.innerHTML = data.map(b => {
+      const partes = String(b.data_servico || '').split('-');
+      const dataFormatada = partes.length === 3
+        ? `${partes[2]}/${partes[1]}/${partes[0]}`
+        : b.data_servico || '';
+
+      return `
+        <div class="border-b border-emerald-100 py-3">
+          <p class="font-bold text-slate-800">
+            ${escapeHTML(b.tipo_imovel)}
+          </p>
+          <p>
+            Bairro: ${escapeHTML(b.bairro)}
+          </p>
+          <p>
+            Quartos: ${escapeHTML(b.quartos)}
+          </p>
+          <p>
+            Data: ${escapeHTML(dataFormatada)}
+          </p>
+          <p>
+            Horário: ${escapeHTML(b.periodo)}
+          </p>
+          <p class="font-black text-emerald-700">
+            ${money(Number(b.valor_estimado))}
+          </p>
+          <p class="text-[10px] mt-1">
+            Status: ${escapeHTML(b.status)}
+          </p>
+        </div>
+      `;
+    }).join('');
+
+  } catch (error) {
+    console.error('Erro ao carregar pedidos:', error);
+    list.textContent = 'Não foi possível carregar os pedidos: ' + error.message;
+  }
 }
+
 
 function closeModal() { document.getElementById('modal-msg').classList.add('hidden'); }
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(e => {}); }
