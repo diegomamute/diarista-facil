@@ -22,7 +22,40 @@
   .custom-scroll::-webkit-scrollbar{height:6px;width:6px}
   .custom-scroll::-webkit-scrollbar-thumb{background:#10b981;border-radius:9999px}
   .glass-effect{background:rgba(255,255,255,.94);backdrop-filter:blur(12px)}
+
   .btn-tap:active{transform:scale(.97)}
+
+  /* Ilustração 3D leve do Diarista Fácil — somente visual */
+  .auth-showcase{height:116px;position:relative;display:flex;align-items:center;justify-content:center;perspective:700px;margin:0 auto 18px;max-width:300px}
+  .clean-scene{position:relative;width:190px;height:104px;transform-style:preserve-3d;animation:sceneFloat 4.5s ease-in-out infinite}
+  .scene-orb{position:absolute;border-radius:50%;background:linear-gradient(145deg,#d1fae5,#34d399);box-shadow:inset -5px -6px 12px #05966955,0 10px 22px #064e3b35;animation:orbBob 3.5s ease-in-out infinite}
+  .scene-orb.one{width:35px;height:35px;left:10px;top:12px}
+  .scene-orb.two{width:19px;height:19px;right:12px;top:8px;animation-delay:-1s}
+  .scene-orb.three{width:13px;height:13px;right:35px;bottom:8px;animation-delay:-2s}
+  .scene-house{position:absolute;left:48px;bottom:4px;width:100px;height:65px;border-radius:13px 13px 18px 18px;background:linear-gradient(145deg,#fff,#d1fae5);box-shadow:9px 12px 0 #064e3b45,0 18px 28px #022c2255;transform:rotateY(-13deg) rotateX(5deg)}
+  .scene-house:before{content:"";position:absolute;width:72px;height:72px;left:14px;top:-28px;background:linear-gradient(135deg,#f0fdf4,#6ee7b7);border-radius:12px 12px 5px 5px;transform:rotate(45deg);z-index:-1;box-shadow:5px 5px 0 #047857}
+  .scene-window{position:absolute;left:17px;top:18px;width:25px;height:27px;border:4px solid #059669;border-radius:6px;background:linear-gradient(135deg,#a7f3d0,#fff)}
+  .scene-door{position:absolute;right:15px;bottom:0;width:25px;height:39px;border-radius:8px 8px 0 0;background:linear-gradient(90deg,#047857,#10b981)}
+  .scene-person{position:absolute;z-index:3;right:7px;bottom:0;width:54px;height:82px;transform:translateZ(32px);animation:personBob 2.8s ease-in-out infinite}
+  .scene-person .head{position:absolute;top:0;left:15px;width:27px;height:27px;border-radius:50%;background:linear-gradient(145deg,#fcd6b5,#d99568);box-shadow:inset -4px -3px 0 #a75c3c33}
+  .scene-person .hair{position:absolute;top:-3px;left:13px;width:30px;height:15px;border-radius:18px 18px 7px 7px;background:#334155}
+  .scene-person .body{position:absolute;top:25px;left:8px;width:42px;height:48px;border-radius:14px 14px 9px 9px;background:linear-gradient(120deg,#0f766e,#34d399);box-shadow:5px 6px 0 #064e3b55}
+  .scene-person .arm{position:absolute;top:33px;right:-1px;width:12px;height:38px;border-radius:10px;background:#f3bd96;transform:rotate(-28deg);transform-origin:top}
+  .scene-spark{position:absolute;color:#fef08a;text-shadow:0 2px 8px #facc15;animation:sparkle 2s ease-in-out infinite}
+  .scene-spark.a{left:34px;top:0;font-size:20px}.scene-spark.b{right:0;top:39px;font-size:16px;animation-delay:.7s}
+  .home-illustration{position:relative;overflow:hidden;min-height:125px;border-radius:26px;background:linear-gradient(120deg,#064e3b,#059669 60%,#14b8a6);box-shadow:0 14px 28px #065f4630}
+  .home-illustration:before,.home-illustration:after{content:"";position:absolute;border-radius:50%;background:#ffffff12}
+  .home-illustration:before{width:180px;height:180px;right:-45px;top:-90px}
+  .home-illustration:after{width:110px;height:110px;right:65px;bottom:-75px}
+  .home-clean-icon{position:absolute;right:24px;bottom:-8px;font-size:104px;color:#d1fae5;text-shadow:8px 10px 0 #064e3b66;transform:rotate(-9deg);animation:cleanerFloat 3s ease-in-out infinite}
+  .home-bubble{position:absolute;color:#fef08a;animation:sparkle 2.4s ease-in-out infinite}
+  @keyframes sceneFloat{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-7px) rotateX(3deg)}}
+  @keyframes personBob{0%,100%{transform:translateY(0) translateZ(32px)}50%{transform:translateY(-5px) translateZ(32px)}}
+  @keyframes orbBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  @keyframes sparkle{0%,100%{opacity:.45;transform:scale(.75) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(18deg)}}
+  @keyframes cleanerFloat{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-8px) rotate(-4deg)}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
 </style>
 </head>
 <body class="bg-emerald-50/40 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-emerald-200">
@@ -35,6 +68,14 @@
       </div>
       <h1 class="text-3xl font-black text-white">Diarista<span class="text-emerald-300">Fácil</span></h1>
       <p class="text-emerald-100 text-xs font-bold uppercase tracking-widest mt-1 flex items-center justify-center gap-1"><i class="fa-solid fa-location-dot"></i> Rio de Janeiro - RJ</p>
+      <div class="auth-showcase" aria-hidden="true">
+        <div class="clean-scene">
+          <span class="scene-orb one"></span><span class="scene-orb two"></span><span class="scene-orb three"></span>
+          <div class="scene-house"><span class="scene-window"></span><span class="scene-door"></span></div>
+          <div class="scene-person"><span class="hair"></span><span class="head"></span><span class="body"></span><span class="arm"></span></div>
+          <i class="fa-solid fa-star scene-spark a"></i><i class="fa-solid fa-sparkles scene-spark b"></i>
+        </div>
+      </div>
     </div>
     <div class="bg-white rounded-3xl p-6 shadow-2xl">
       <div class="grid grid-cols-2 gap-2 mb-5 bg-slate-100 p-1 rounded-xl">
@@ -126,6 +167,16 @@
           <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold text-emerald-100 mb-2"><i class="fa-solid fa-circle-check"></i> <span id="welcome-role">Cliente</span></div>
           <h2 class="text-2xl font-black flex items-center gap-2">👋 <span id="welcome-name">Olá!</span></h2>
           <p class="text-emerald-100 text-xs mt-1" id="welcome-msg">Bem-vindo!</p>
+        </div>
+        <div class="home-illustration mb-6" aria-hidden="true">
+          <div class="relative z-10 p-5 max-w-[65%]">
+            <span class="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-emerald-100"><i class="fa-solid fa-sparkles"></i> Casa limpa, vida leve</span>
+            <p class="mt-2 text-lg font-black leading-tight text-white">Seu lar brilhando<br>sem complicação.</p>
+            <p class="mt-1 text-[10px] text-emerald-100">Encontre profissionais e agende com facilidade.</p>
+          </div>
+          <i class="fa-solid fa-person-broom home-clean-icon"></i>
+          <i class="fa-solid fa-star home-bubble" style="right:118px;top:22px;font-size:17px"></i>
+          <i class="fa-solid fa-sparkles home-bubble" style="right:18px;top:18px;font-size:22px;animation-delay:.8s"></i>
         </div>
         <div class="mt-6 grid grid-cols-2 gap-3">
           <button onclick="scrollToSimulate()" class="bg-emerald-600 text-white font-black px-4 py-3.5 rounded-2xl shadow-lg flex items-center justify-center gap-2 text-xs btn-tap"><i class="fa-solid fa-calculator"></i> Simular</button>
