@@ -42,7 +42,7 @@ async function respondBooking(id,status){
     const r=await db.from('agendamentos')
       .update(upd)
       .eq('id',id)
-      .in('status',['Solicitação criada','Aberto','Pendente'])
+      .is('diarista_id',null).in('status',['Solicitação criada','Aberto','Pendente'])
       .select('*')
       .maybeSingle();
     if(r.error)throw r.error;
