@@ -1045,7 +1045,7 @@ async function showChats(){
 }
 async function hideConversation(bookingId){
  if(!currentUser||!bookingId)return;
- if(!confirm('Apagar esta conversa da sua lista? Ela continuará visível para a outra pessoa.'))return;
+ if(!confirm('Ocultar esta conversa da sua lista? Ela continuará visível para a outra pessoa.'))return;
  let r=await db.from('conversas_ocultas').insert({usuario_id:currentUser.id,agendamento_id:bookingId});
  if(r.error){alert('Não foi possível apagar a conversa: '+r.error.message);return}
  if(activeBooking&&String(activeBooking.id)===String(bookingId)){
