@@ -273,6 +273,103 @@ textarea.field{min-height:100px;resize:vertical}
 @media(max-width:380px){.location-card{padding:23px 18px 19px}.location-title{font-size:26px}}
 @media(prefers-reduced-motion:reduce){.location-card{animation:none}}
 
+
+/* DIARISTA FÁCIL — refinamento visual premium mobile */
+:root{
+ --df-bg:#f5faf7;--df-surface:#fff;--df-text:#163b31;--df-subtle:#70877e;
+ --df-border:#e0eee6;--df-brand:#07865f;--df-brand-dark:#075b46;
+ --df-elevation:0 10px 30px rgba(18,65,48,.075);
+}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+ background:linear-gradient(180deg,#f8fcf9 0%,#f1f8f4 55%,#f7fbf8 100%);
+ color:var(--df-text);letter-spacing:-.012em;
+}
+.top{
+ min-height:76px;padding:12px clamp(16px,4vw,28px);
+ background:rgba(255,255,255,.92);backdrop-filter:blur(18px);
+ border-bottom:1px solid rgba(210,232,218,.8);
+ box-shadow:0 5px 22px rgba(22,59,49,.045);
+}
+.brand{font-size:21px;font-weight:950;letter-spacing:-1px}
+.top .muted{font-size:12px;font-weight:600;letter-spacing:.015em}
+.top .btn{min-height:46px;padding:10px 17px;border:1px solid #d9eee2;background:#f5fcf7}
+.wrap{max-width:780px;padding:22px 17px calc(112px + env(safe-area-inset-bottom))}
+#homeSection,#clientHome,#cleanerHome{display:block}
+#clientHome,#cleanerHome{gap:18px!important}
+.client-reference-banner,.reference-cleaner-banner{
+ border:4px solid rgba(255,255,255,.96);border-radius:25px;
+ box-shadow:0 18px 42px rgba(8,83,59,.13);
+}
+.client-reference-banner{margin-bottom:20px}
+#clientHome>.card,#cleanerHome>.card{
+ border:1px solid #e0eee6;border-radius:24px;background:#fff;
+ box-shadow:var(--df-elevation);padding:21px;
+}
+#clientHome>.card:first-of-type{
+ background:linear-gradient(145deg,#fff 0%,#f3fbf6 100%);
+}
+#clientHome h2,#cleanerHome h2{
+ color:#164b3b;font-size:clamp(19px,4.5vw,23px);
+ line-height:1.25;font-weight:900;letter-spacing:-.65px;
+}
+#clientHome p,#cleanerHome p{line-height:1.65}
+#clientHome ol{gap:14px}
+#clientHome ol li{align-items:flex-start;gap:13px}
+#clientHome ol li>span:first-child{
+ flex:0 0 42px;width:42px;height:42px;border-radius:15px;
+ display:grid;place-items:center;background:linear-gradient(145deg,#0ca879,#087a59);
+ box-shadow:0 6px 15px rgba(8,134,95,.18);font-weight:900;
+}
+.card{border-color:var(--df-border);box-shadow:var(--df-elevation)}
+.btn{min-height:46px;border-radius:15px;font-weight:850;letter-spacing:-.01em}
+.btn.primary{background:linear-gradient(135deg,#0a9b70,#087454);box-shadow:0 7px 17px rgba(8,134,95,.2)}
+.btn.secondary{background:#f4fbf6;border-color:#d5ebdd;color:#087454}
+.field,select.field,textarea.field{
+ min-height:49px;border:1px solid #d9e9df;border-radius:14px;
+ background:#fff;box-shadow:0 2px 8px rgba(15,70,49,.025);
+}
+.field:focus{outline:3px solid rgba(16,185,129,.16);border-color:#0b9a70}
+.nav{
+ min-height:76px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+ background:rgba(255,255,255,.96);border-top:1px solid #e1eee6;
+ box-shadow:0 -9px 28px rgba(19,66,48,.07);backdrop-filter:blur(18px);
+}
+.nav button{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:4px;min-height:58px;padding:7px 2px 5px;border-radius:16px;
+ color:#82938b;font-size:10px;font-weight:750;letter-spacing:-.01em;
+}
+.nav button.active{
+ color:#087b59;background:linear-gradient(180deg,#e8f9ef 0%,#f6fcf8 100%);
+}
+.nav i{font-size:20px;margin:0;transition:transform .18s ease}
+.nav button.active i{transform:translateY(-1px)}
+#catalogSection .card,#chatSection .card,#profileSection .card,#requestsSection .card{
+ border:1px solid var(--df-border);box-shadow:var(--df-elevation);
+}
+#cleanerCatalog article,#opportunities article,#clientBookings article,
+#conversationList article,#cleanerAgendaList article{
+ border:1px solid #e1eee6!important;border-radius:20px!important;
+ box-shadow:0 6px 20px rgba(17,69,48,.055)!important;
+}
+button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
+ outline:3px solid rgba(16,185,129,.42);outline-offset:3px;
+}
+@media(max-width:560px){
+ .top{min-height:70px;padding:10px 14px}
+ .brand{font-size:19px}
+ .wrap{padding:15px 13px calc(112px + env(safe-area-inset-bottom))}
+ .client-reference-banner,.reference-cleaner-banner{border-width:3px;border-radius:21px}
+ #clientHome>.card,#cleanerHome>.card{padding:18px;border-radius:21px}
+ .nav{min-height:72px}
+ .nav button{font-size:9px;min-height:54px}
+ .nav i{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .nav i{transition:none}
+}
 </style></head><body>
 <section id="locationGate" aria-label="Escolha sua localização">
  <div class="location-shell"><div class="location-card">
