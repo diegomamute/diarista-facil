@@ -370,6 +370,78 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
  html{scroll-behavior:auto}
  .nav i{transition:none}
 }
+
+/* FORMULÁRIO DE AGENDAMENTO — experiência premium */
+#clientHome #bookingForm{
+ --booking-green:#087d5b;--booking-line:#dceee4;
+ display:flex;flex-direction:column;gap:11px;
+ padding:18px;margin-top:16px;border:1px solid #e2eee6;
+ border-radius:23px;background:linear-gradient(180deg,#ffffff 0%,#fbfefc 100%);
+ box-shadow:0 12px 32px rgba(19,73,49,.065);
+}
+#clientHome #bookingForm:before{
+ content:"DETALHES DO ATENDIMENTO";
+ display:block;margin:0 0 3px;padding:0 0 12px;
+ border-bottom:1px solid #e8f1eb;color:#087b59;
+ font-size:11px;font-weight:900;letter-spacing:.11em;
+}
+#clientHome #bookingForm>label,
+#clientHome #bookingForm>div>div>label{
+ display:block;color:#24483b;font-size:13px;font-weight:800;
+ letter-spacing:-.015em;margin:2px 0 0;
+}
+#clientHome #bookingForm .field{
+ width:100%;min-width:0;min-height:54px;padding:12px 14px;
+ border:1.5px solid #d9eae0;border-radius:15px;
+ background-color:#fff;color:#24483b;font-size:15px;font-weight:600;
+ box-shadow:0 3px 9px rgba(20,73,48,.035);
+ transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+#clientHome #bookingForm .field:focus{
+ border-color:#0b9a70;background:#fcfffd;
+ box-shadow:0 0 0 4px rgba(16,185,129,.12);outline:0;
+}
+#clientHome #bookingForm select.field{
+ appearance:none;padding-right:38px;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23748b80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;background-position:right 13px center;
+}
+#clientHome #bookingForm>div.grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+}
+#clientHome #bookingForm>div.grid>div{min-width:0}
+#clientHome #bookingForm>div.grid .field{margin-top:7px}
+#clientHome #bookingForm>div:has(#amount){
+ margin-top:3px;padding:15px;border:1px solid #d9eee1;
+ border-radius:18px;background:linear-gradient(135deg,#f0fbf4,#fbfefc);
+}
+#clientHome #bookingForm label:has(+ #amount){font-size:13px;color:#24513e}
+#clientHome #bookingForm #amount{
+ min-height:58px;margin-top:8px;padding:12px 15px;
+ border:1.5px solid #bfe5ce;border-radius:15px;
+ color:#087451;font-size:23px;font-weight:900;
+ background:#fff;
+}
+#clientHome #bookingForm button[type="submit"]{
+ min-height:58px;margin-top:4px;padding:15px 18px;
+ border:0;border-radius:17px;
+ background:linear-gradient(120deg,#07865f 0%,#0aa879 55%,#07865f 100%);
+ box-shadow:0 10px 22px rgba(7,134,95,.22);
+ color:#fff;font-size:15px;font-weight:900;letter-spacing:-.015em;
+}
+#clientHome #bookingForm button[type="submit"]:active{transform:scale(.985)}
+#clientHome #clientHomeTitle{letter-spacing:-.5px}
+@media(max-width:560px){
+ #clientHome #bookingForm{padding:15px;gap:10px;border-radius:21px}
+ #clientHome #bookingForm .field{min-height:52px;font-size:14px}
+ #clientHome #bookingForm>div.grid{gap:9px}
+ #clientHome #bookingForm>div:has(#amount){padding:13px}
+ #clientHome #bookingForm #amount{font-size:22px}
+ #clientHome #bookingForm button[type="submit"]{min-height:56px}
+}
+@media(prefers-reduced-motion:reduce){
+ #clientHome #bookingForm .field{transition:none}
+}
 </style></head><body>
 <section id="locationGate" aria-label="Escolha sua localização">
  <div class="location-shell"><div class="location-card">
