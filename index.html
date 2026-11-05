@@ -516,6 +516,38 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
 @media(prefers-reduced-motion:reduce){#clientHome>*,#cleanerHome>*{animation:none!important;transition:none!important}}
 </style>
 <style>#clientHome.hidden,#cleanerHome.hidden{display:none!important}</style>
+<style>
+.profile-redesign{padding-bottom:1.25rem}
+.profile-hero{position:relative;overflow:hidden;border:1px solid #ccebdd;border-radius:28px;padding:22px;background:radial-gradient(circle at 100% 0%,rgba(255,244,194,.9),transparent 42%),linear-gradient(135deg,#e5faef,#f8fff9 68%,#fffdf0);box-shadow:0 12px 32px rgba(8,110,78,.08)}
+.profile-hero:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(22,163,112,.06);right:-55px;bottom:24px;pointer-events:none}
+.profile-hero-top{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.profile-avatar{width:78px;height:78px;flex:none;border-radius:25px;display:grid;place-items:center;color:#fff;font-size:34px;background:linear-gradient(145deg,#07865f,#25b98b);box-shadow:0 10px 22px rgba(7,134,95,.22)}
+.profile-eyebrow{font-size:11px;letter-spacing:.12em;font-weight:900;color:#087653}
+.profile-name{font-size:clamp(21px,5vw,28px);font-weight:900;line-height:1.15;color:#174c3b;margin-top:4px;overflow-wrap:anywhere}
+.profile-role{font-size:14px;color:#668075;margin-top:5px}
+.profile-status{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 15px;margin-top:18px;background:#fff2cf;color:#8a6416;font-size:13px;font-weight:800}
+.profile-status.is-verified{background:#d9fbe8;color:#087453}
+.profile-quick-actions{position:relative;z-index:1;margin-top:18px}
+.profile-quick-actions button{width:100%;display:flex;align-items:center;gap:11px;text-align:left;border:1px solid rgba(8,118,83,.13);background:rgba(255,255,255,.82);border-radius:16px;padding:13px 15px;color:#12694f;font-weight:800}
+.profile-panel{background:#fff;border:1px solid #e1eee7;border-radius:25px;padding:19px;box-shadow:0 8px 25px rgba(24,75,57,.045)}
+.profile-panel-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.profile-icon{width:45px;height:45px;flex:none;display:grid;place-items:center;border-radius:15px;background:#e6f8ef;color:#07865f;font-size:19px}
+.profile-panel-heading h3{font-size:19px;font-weight:900;color:#194c3b}
+.profile-panel-heading p{font-size:12px;color:#7a9187;margin-top:2px}
+.profile-info-row{display:flex;align-items:flex-start;gap:12px;padding:15px 0;border-bottom:1px solid #edf4ef}
+.profile-info-row:last-of-type{border-bottom:0}
+.profile-info-icon{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;background:#f0faf4;color:#087b5b}
+.profile-info-row p{font-size:12px;color:#82938b;margin-bottom:3px}
+.profile-info-row strong{font-size:16px;color:#244b3d;overflow-wrap:anywhere}
+.profile-privacy{font-size:12px;line-height:1.5;color:#82938b;background:#f6faf7;border-radius:13px;padding:11px;margin-top:8px}
+.profile-verification-panel summary{margin-bottom:0}
+.profile-chevron{color:#087b5b;transition:transform .2s}
+.profile-verification-panel details[open] .profile-chevron{transform:rotate(180deg)}
+.profile-verification-content{padding-top:12px}
+.profile-logout-panel{padding:5px 8px 12px}
+.profile-logout-panel .btn{border-radius:16px}
+@media(prefers-reduced-motion:no-preference){.profile-panel,.profile-hero{animation:profileFadeUp .35s ease both}@keyframes profileFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
+</style>
 </head><body>
 <section id="locationGate" aria-label="Escolha sua localização">
  <div class="location-shell"><div class="location-card">
@@ -596,36 +628,37 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
 <div id="chatMessages" class="mt-4 mb-3 min-h-48 max-h-[52vh] overflow-y-auto"></div>
 <form onsubmit="sendMessage(event)" class="flex gap-2"><input id="messageInput" class="field" placeholder="Digite sua mensagem..." autocomplete="off" required><button class="btn primary"><i class="fa-solid fa-paper-plane"></i></button></form>
 </div></section>
-<section id="profileSection" class="hidden space-y-4">
-<div class="card overflow-hidden" style="background:linear-gradient(135deg,#e9fff2,#fff9e8);border-color:#cceedd">
- <div class="flex items-center gap-3">
-  <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black text-white shadow-sm" style="background:linear-gradient(135deg,#07865f,#22b98d)"><i class="fa-solid fa-user"></i></div>
-  <div class="min-w-0 flex-1"><p class="text-xs font-bold uppercase tracking-wide text-emerald-800">Meu perfil</p><h2 class="font-black text-xl leading-tight break-words" id="profileName"></h2><p class="muted small mt-1" id="profileRole"></p></div>
- </div>
- <div id="profileVerificationBadge" class="mt-4 inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold" style="background:#d9fbe8;color:#087453"><i class="fa-solid fa-shield-check"></i><span>Identidade verificada</span></div>
-</div>
-<div class="card">
- <h3 class="font-black text-lg mb-3"><i class="fa-regular fa-address-card text-emerald-600 mr-2"></i>Meus dados</h3>
- <div class="flex items-start gap-3 py-3 border-b border-emerald-50"><i class="fa-regular fa-envelope text-emerald-700 mt-1"></i><div class="min-w-0"><p class="muted text-xs">E-mail da conta</p><p class="font-semibold break-all" id="profileEmail"></p></div></div>
- <div class="flex items-start gap-3 py-3"><i class="fa-solid fa-location-dot text-emerald-700 mt-1"></i><div class="min-w-0"><p class="muted text-xs">Bairro / região cadastrada</p><p class="font-semibold" id="profileRegion">Não informado</p></div></div>
- <p class="muted text-xs mt-2">Seus dados são privados e usados para administrar sua conta. O endereço completo não é exibido publicamente.</p>
-</div>
-<div class="card">
- <details id="profileVerificationDetails">
-  <summary class="flex items-center gap-3 cursor-pointer list-none">
-   <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></span>
-   <span class="flex-1"><strong class="block">Verificação de identidade</strong><span id="profileVerificationSummary" class="muted small">Consulte a situação da sua verificação</span></span>
-   <i class="fa-solid fa-chevron-down text-emerald-700"></i>
-  </summary>
-  <div class="pt-3">
-   <p id="diditStatus" class="notice mt-2">Sua conta ainda não foi verificada.</p>
-   <p class="muted small mt-2">A verificação é realizada pela Didit, com câmera e prova de vida conforme o fluxo configurado na plataforma.</p>
-   <button id="diditStartBtn" class="btn primary w-full mt-4" onclick="startDiditVerification()"><i class="fa-solid fa-camera mr-2"></i>Iniciar verificação facial</button>
-   <button id="diditCheckBtn" class="btn secondary w-full mt-2 hidden" onclick="checkDiditVerification()">Já concluí — conferir resultado</button>
+<section id="profileSection" class="profile-redesign hidden space-y-4">
+ <div class="profile-hero">
+  <div class="profile-hero-top">
+   <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+   <div class="min-w-0 flex-1"><span class="profile-eyebrow">ÁREA PESSOAL</span><h2 id="profileName" class="profile-name"></h2><p id="profileRole" class="profile-role"></p></div>
   </div>
- </details>
-</div>
-<div class="card"><button class="btn secondary w-full" onclick="logout()"><i class="fa-solid fa-right-from-bracket mr-2"></i>Sair da conta</button></div>
+  <div id="profileVerificationBadge" class="profile-status"><i class="fa-solid fa-shield-halved"></i><span>Verificação pendente</span></div>
+  <div class="profile-quick-actions">
+   <button type="button" onclick="openSection('requests')"><i class="fa-solid fa-clipboard-list"></i><span id="profileMainActionLabel">Meus pedidos</span><i class="fa-solid fa-arrow-up-right-from-square ml-auto"></i></button>
+  </div>
+ </div>
+ <div class="profile-panel">
+  <div class="profile-panel-heading"><span class="profile-icon"><i class="fa-regular fa-address-card"></i></span><div><h3>Meus dados</h3><p>Informações da sua conta</p></div></div>
+  <div class="profile-info-row"><span class="profile-info-icon"><i class="fa-regular fa-envelope"></i></span><div class="min-w-0"><p>E-mail da conta</p><strong id="profileEmail" class="break-all"></strong></div></div>
+  <div class="profile-info-row"><span class="profile-info-icon"><i class="fa-solid fa-location-dot"></i></span><div class="min-w-0"><p>Bairro / região cadastrada</p><strong id="profileRegion">Não informado</strong></div></div>
+  <p class="profile-privacy"><i class="fa-solid fa-lock mr-1"></i> Seus dados são privados. O endereço completo não é exibido publicamente.</p>
+ </div>
+ <div class="profile-panel profile-verification-panel">
+  <details id="profileVerificationDetails">
+   <summary class="profile-panel-heading cursor-pointer list-none">
+    <span class="profile-icon"><i class="fa-solid fa-shield-halved"></i></span><div class="flex-1"><h3>Verificação de identidade</h3><p id="profileVerificationSummary">Consulte a situação da sua verificação</p></div><i class="fa-solid fa-chevron-down profile-chevron"></i>
+   </summary>
+   <div class="profile-verification-content">
+    <p id="diditStatus" class="notice mt-2">Sua conta ainda não foi verificada.</p>
+    <p class="muted small mt-2">A verificação é realizada pela Didit, com câmera e prova de vida conforme o fluxo configurado na plataforma.</p>
+    <button id="diditStartBtn" class="btn primary w-full mt-4" onclick="startDiditVerification()"><i class="fa-solid fa-camera mr-2"></i>Iniciar verificação facial</button>
+    <button id="diditCheckBtn" class="btn secondary w-full mt-2 hidden" onclick="checkDiditVerification()">Já concluí — conferir resultado</button>
+   </div>
+  </details>
+ </div>
+ <div class="profile-logout-panel"><button class="btn secondary w-full" onclick="logout()"><i class="fa-solid fa-right-from-bracket mr-2"></i>Sair da conta</button></div>
 </section>
 <section id="requestsSection" class="hidden">
 <div id="clientRequestsPanel" class="card">
@@ -685,7 +718,7 @@ function authMode(m){mode=m;$('registerFields').classList.toggle('hidden',m==='l
 async function handleAuth(e){e.preventDefault();if(!db)return alert('Supabase não carregou. Atualize a página.');let email=$('email').value.trim().toLowerCase(),password=$('password').value;try{let user;if(mode==='login'){let r=await db.auth.signInWithPassword({email,password});if(r.error)throw r.error;user=r.data.user}else{let type=$('type').value,name=$('name').value.trim();if(!name)return alert('Informe seu nome.');let metadata={nome:name,tipo:type,bairro:type==='diarista'?$('region').value:null,preco_base:$('price').value?Number($('price').value):null,bio:$('bio').value};let r=await db.auth.signUp({email,password,options:{data:metadata}});if(r.error)throw r.error;if(!r.data.session){alert('Cadastro iniciado! Confirme seu e-mail e depois entre.');return}user=r.data.user}
 let p=await db.from('perfis').select('id,nome,tipo,telefone,bairro,verificado_cliente,verificado_diarista').eq('id',user.id).maybeSingle();if(p.error)throw p.error;let meta=user.user_metadata||{};if(!p.data&&mode==='login'){let up=await db.from('perfis').upsert({id:user.id,nome:meta.nome||email.split('@')[0],tipo:meta.tipo||'cliente',bairro:meta.bairro||null},{onConflict:'id'});if(up.error)throw up.error}currentUser={id:user.id,name:p.data?.nome||meta.nome||email.split('@')[0],email,type:p.data?.tipo||meta.tipo||'cliente',region:p.data?.bairro||meta.bairro||'',verificado:(p.data?.tipo||meta.tipo||'cliente')==='diarista'?!!p.data?.verificado_diarista:!!p.data?.verificado_cliente};enterApp()}catch(err){alert('Não foi possível entrar: '+err.message);console.error(err)}}
 async function forgotPassword(){let email=$('email').value.trim();if(!email)return alert('Digite seu e-mail primeiro.');let r=await db.auth.resetPasswordForEmail(email,{redirectTo:location.origin});alert(r.error?r.error.message:'Confira seu e-mail para redefinir a senha.')}
-function enterApp(){$('locationGate')?.classList.add('hidden');restoreDiditSession();registerMessageServiceWorker();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('userLabel').textContent=currentUser.name.split(' ')[0];$('hello').textContent='Olá, '+currentUser.name.split(' ')[0]+'!';$('roleLabel').textContent=currentUser.type==='diarista'?'PAINEL DA PROFISSIONAL DIARISTA':'PAINEL DO CONTRATANTE';$('homeMessage').textContent=currentUser.type==='diarista'?'Encontre oportunidades e converse com contratantes.':'Publique seu pedido e negocie diretamente com profissionais diaristas.';$('homeDefaultHero').classList.add('hidden');$('clientReferenceBanner').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerReferenceBanner').classList.toggle('hidden',currentUser.type!=='diarista');$('referenceHello').textContent='Olá, '+currentUser.name.split(' ')[0]+'!';$('clientHome').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerHome').classList.toggle('hidden',currentUser.type!=='diarista');$('clientHome').style.display=currentUser.type==='cliente'?'':'none';$('cleanerHome').style.display=currentUser.type==='diarista'?'':'none';$('profileName').textContent=currentUser.name;$('profileEmail').textContent=currentUser.email;$('profileRole').textContent=currentUser.type==='diarista'?'Profissional diarista':'Contratante';$('profileRegion').textContent=currentUser.region||'Não informado';refreshDiditUI();$('navRequestsLabel').textContent=currentUser.type==='diarista'?'Meu anúncio':'Meus pedidos';$('navJobsLabel').textContent=currentUser.type==='diarista'?'Oportunidades':'Profissionais';$('clientRequestsPanel').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerAdPanel').classList.toggle('hidden',currentUser.type!=='diarista');openSection('home');startMessageNotifications();if(currentUser.type==='cliente')loadClientBookings();else{loadOpportunities('open');loadCleanerStats();loadCleanerAgenda();loadCleanerAvailability();loadCleanerWorkLocations();loadCleanerOffer()}updateUnreadBadge()}
+function enterApp(){$('locationGate')?.classList.add('hidden');restoreDiditSession();registerMessageServiceWorker();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('userLabel').textContent=currentUser.name.split(' ')[0];$('hello').textContent='Olá, '+currentUser.name.split(' ')[0]+'!';$('roleLabel').textContent=currentUser.type==='diarista'?'PAINEL DA PROFISSIONAL DIARISTA':'PAINEL DO CONTRATANTE';$('homeMessage').textContent=currentUser.type==='diarista'?'Encontre oportunidades e converse com contratantes.':'Publique seu pedido e negocie diretamente com profissionais diaristas.';$('homeDefaultHero').classList.add('hidden');$('clientReferenceBanner').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerReferenceBanner').classList.toggle('hidden',currentUser.type!=='diarista');$('referenceHello').textContent='Olá, '+currentUser.name.split(' ')[0]+'!';$('clientHome').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerHome').classList.toggle('hidden',currentUser.type!=='diarista');$('clientHome').style.display=currentUser.type==='cliente'?'':'none';$('cleanerHome').style.display=currentUser.type==='diarista'?'':'none';$('profileName').textContent=currentUser.name;$('profileEmail').textContent=currentUser.email;$('profileRole').textContent=currentUser.type==='diarista'?'Profissional diarista':'Contratante';$('profileRegion').textContent=currentUser.region||'Não informado';$('profileMainActionLabel').textContent=currentUser.type==='diarista'?'Meu anúncio profissional':'Meus pedidos';refreshDiditUI();$('navRequestsLabel').textContent=currentUser.type==='diarista'?'Meu anúncio':'Meus pedidos';$('navJobsLabel').textContent=currentUser.type==='diarista'?'Oportunidades':'Profissionais';$('clientRequestsPanel').classList.toggle('hidden',currentUser.type!=='cliente');$('cleanerAdPanel').classList.toggle('hidden',currentUser.type!=='diarista');openSection('home');startMessageNotifications();if(currentUser.type==='cliente')loadClientBookings();else{loadOpportunities('open');loadCleanerStats();loadCleanerAgenda();loadCleanerAvailability();loadCleanerWorkLocations();loadCleanerOffer()}updateUnreadBadge()}
 async function logout(){if(chatChannel)await db.removeChannel(chatChannel);if(messageChannel)await db.removeChannel(messageChannel);if(notificationChannel)await db.removeChannel(notificationChannel);chatChannel=messageChannel=notificationChannel=null;currentUser=null;await db.auth.signOut();currentUser=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');authMode('login')}
 
 let diditSessionId=null;
