@@ -638,7 +638,6 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
    <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
    <div class="min-w-0 flex-1"><span class="profile-eyebrow">ÁREA PESSOAL</span><h2 id="profileName" class="profile-name"></h2><p id="profileRole" class="profile-role"></p></div>
   </div>
-  <div id="profileVerificationBadge" class="profile-status"><i class="fa-solid fa-shield-halved"></i><span>Verificação pendente</span></div>
   <div class="profile-quick-actions">
    <button type="button" onclick="openSection('requests')"><i class="fa-solid fa-clipboard-list"></i><span id="profileMainActionLabel">Meus pedidos</span><i class="fa-solid fa-arrow-up-right-from-square ml-auto"></i></button>
   </div>
@@ -648,28 +647,6 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
   <div class="profile-info-row"><span class="profile-info-icon"><i class="fa-regular fa-envelope"></i></span><div class="min-w-0"><p>E-mail da conta</p><strong id="profileEmail" class="break-all"></strong></div></div>
   <div class="profile-info-row"><span class="profile-info-icon"><i class="fa-solid fa-location-dot"></i></span><div class="min-w-0"><p>Bairro / região cadastrada</p><strong id="profileRegion">Não informado</strong></div></div>
   <p class="profile-privacy"><i class="fa-solid fa-lock mr-1"></i> Seus dados são privados. O endereço completo não é exibido publicamente.</p>
- </div>
- <div class="profile-panel profile-verification-panel">
-  <details id="profileVerificationDetails">
-   <summary class="profile-panel-heading cursor-pointer list-none">
-    <span class="profile-icon"><i class="fa-solid fa-shield-halved"></i></span><div class="flex-1"><h3>Verificação de identidade</h3><p id="profileVerificationSummary">Consulte a situação da sua verificação</p></div><i class="fa-solid fa-chevron-down profile-chevron"></i>
-   </summary>
-   <div class="profile-verification-content">
-    <p id="diditStatus" class="notice mt-2">Sua conta ainda não foi verificada.</p>
-    <p class="muted small mt-2">A verificação é realizada pela Didit, com câmera e prova de vida conforme o fluxo configurado na plataforma.</p>
-    <button id="diditStartBtn" class="btn primary w-full mt-4" onclick="startDiditVerification()"><i class="fa-solid fa-camera mr-2"></i>Iniciar verificação facial</button>
-    <button id="diditCheckBtn" class="btn secondary w-full mt-2 hidden" onclick="checkDiditVerification()">Já concluí — conferir resultado</button>
-   </div>
-  </details>
- </div>
- <div class="profile-panel" id="notificationSettingsPanel">
-  <div class="profile-panel-heading"><span class="profile-icon"><i class="fa-solid fa-bell"></i></span><div><h3>Notificações e vibração</h3><p>Escolha como quer receber os avisos</p></div></div>
-  <label class="flex items-center justify-between gap-3 py-3" for="vibrationSetting">
-   <span><strong class="block text-sm">Vibrar ao receber mensagens</strong><small class="muted">O celular vibra quando chegar uma nova mensagem</small></span>
-   <input id="vibrationSetting" type="checkbox" class="w-5 h-5 accent-emerald-600" onchange="setVibrationPreference(this.checked)">
-  </label>
-  <button type="button" class="btn secondary w-full" onclick="testNotificationVibration()"><i class="fa-solid fa-mobile-screen-button mr-2"></i>Testar vibração</button>
-  <p id="vibrationSupportNote" class="muted small mt-2">A vibração depende do suporte do navegador e das configurações de som e vibração do Android.</p>
  </div>
  <div class="profile-logout-panel"><button class="btn secondary w-full" onclick="logout()"><i class="fa-solid fa-right-from-bracket mr-2"></i>Sair da conta</button></div>
 </section>
@@ -1084,7 +1061,11 @@ async function showChats(){
  if(r.error){$('conversationList').innerHTML='<div class="notice">Não foi possível carregar as conversas: '+esc(r.error.message)+'</div>';return}
  if(hiddenResult.error){$('conversationList').innerHTML='<div class="notice">Não foi possível carregar as preferências das conversas: '+esc(hiddenResult.error.message)+'</div>';return}
  let hiddenIds=new Set((hiddenResult.data||[]).map(x=>String(x.agendamento_id)));
- let rows=r.data||[],{msgs}=await updateUnreadBadge(),seen=new Set(readMessageIds()),unreadByBooking={};
+ let rows=r.data||[],msgs=await getIncomingMessages();
+ // Ao abrir a central de conversas, limpar avisos antigos já consultados pelo usuário.
+ saveReadMessageIds([...readMessageIds(),...msgs.map(m=>String(m.id))]);
+ await updateUnreadBadge();
+ let seen=new Set(readMessageIds()),unreadByBooking={};
  msgs.filter(m=>!seen.has(String(m.id))).forEach(m=>{unreadByBooking[m.agendamento_id]=(unreadByBooking[m.agendamento_id]||0)+1});
  let conversations=rows.filter(b=>(b.diarista_id||msgs.some(m=>m.agendamento_id===b.id))&&!hiddenIds.has(String(b.id)));
  $('conversationList').innerHTML=conversations.length?conversations.map(b=>{
