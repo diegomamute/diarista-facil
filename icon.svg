@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#16d978"/><stop offset="1" stop-color="#006b43"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff36b"/><stop offset="1" stop-color="#ffb900"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#003d2c" flood-opacity=".3"/></filter>
+</defs>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<path d="M0 360Q140 295 270 355T512 330V512H0Z" fill="#005c39" opacity=".5"/>
+<g fill="#fff6a5"><path d="M72 80l9 23 23 9-23 9-9 23-9-23-23-9 23-9z"/><path d="M421 65l7 18 18 7-18 7-7 18-7-18-18-7 18-7z"/></g>
+<g filter="url(#shadow)">
+ <path d="M118 210Q103 103 206 88Q300 75 327 167Q343 222 295 255L155 251Z" fill="#5b321f"/>
+ <path d="M167 170Q175 99 260 111Q325 120 323 194L297 237H162Z" fill="#7c4728"/>
+ <path d="M145 182Q145 102 246 92Q321 91 341 170Q302 139 264 154Q215 173 145 182Z" fill="#20b95f" stroke="#eaffdf" stroke-width="9"/>
+ <path d="M164 184Q164 143 208 132Q264 119 301 157Q325 182 310 239Q292 292 235 292Q177 291 164 239Z" fill="#ffc18e"/>
+ <path d="M164 193Q188 159 226 153Q271 145 308 183Q290 151 260 139Q206 129 178 160Z" fill="#4b291e"/>
+ <ellipse cx="207" cy="211" rx="11" ry="14" fill="#38271f"/><ellipse cx="273" cy="211" rx="11" ry="14" fill="#38271f"/>
+ <path d="M218 250Q241 272 266 248Q246 282 218 250Z" fill="#fff"/><path d="M222 252Q242 265 261 251Q247 278 222 252Z" fill="#d93642"/>
+ <path d="M164 294Q122 304 108 366L115 405H340L325 331Q310 294 278 290L250 318L211 315Z" fill="#fff"/>
+ <path d="M177 303L211 315L250 318L280 296L307 404H155Z" fill="#087b4c" stroke="#d6ffe6" stroke-width="7"/>
+ <path d="M139 325Q104 326 91 358L70 413Q63 439 88 448Q110 454 122 429L160 363Z" fill="#ffc18e"/>
+ <path d="M287 326Q323 321 347 350L379 397Q393 419 371 435Q350 448 333 424L294 381Z" fill="#ffc18e"/>
+ <path d="M75 394Q91 371 119 390L132 422Q128 449 103 458Q78 461 66 438Z" fill="url(#gold)"/>
+ <path d="M339 391Q365 371 388 394L408 426Q410 451 385 458Q359 459 348 437Z" fill="url(#gold)"/>
+ <path d="M78 349L124 349L138 382L108 402L80 385Z" fill="#eaf8ff" stroke="#fff" stroke-width="7"/>
+ <path d="M113 350L145 352L143 375L122 374Z" fill="#19a9ed"/>
+ <path d="M353 361Q389 355 402 388L385 422L348 409L331 385Z" fill="#8be34d" stroke="#eaffdf" stroke-width="7"/>
+</g>
+<path d="M32 433Q150 390 257 422T480 407" fill="none" stroke="url(#gold)" stroke-width="15" stroke-linecap="round"/>
+<text x="256" y="475" font-family="Arial,sans-serif" font-size="35" font-weight="900" text-anchor="middle" fill="#fff">DiaristaFácil RJ</text>
+</svg>
