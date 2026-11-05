@@ -696,27 +696,47 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
   <div class="location-privacy"><i class="fa-solid fa-shield-halved" style="color:#10a66f;margin-top:1px"></i><span>Sua localização é opcional. Se permitir, as coordenadas ficam salvas somente neste aparelho; não enviamos sua posição exata ao servidor.</span></div>
  </div></div>
 </section>
-<div id="auth" class="hidden min-h-screen flex items-center justify-center p-4 auth-screen"><div class="w-full max-w-md auth-inner">
- <div class="auth-brand"><span class="auth-brand-mark"><i class="fa-solid fa-house-chimney-user"></i></span><div><div class="auth-brand-name">Diarista<span>Fácil</span></div><div class="auth-brand-city"><i class="fa-solid fa-location-dot"></i> RIO DE JANEIRO · RJ</div></div></div>
- <div class="cleaner-scene auth-cleaner-scene"><img class="cleaner-illustration" alt="Mascote DiaristaFácil com uniforme verde e luvas amarelas varrendo uma sala iluminada" src="https://raw.githubusercontent.com/diegomamute/diarista-facil/main/assets/diarista-login-hero.webp?v=20261105"><div class="auth-hero-copy"><span class="auth-hero-pill"><i class="fa-solid fa-sparkles"></i> BEM-VINDO!</span><h1>Sua casa limpa. Sua rotina leve.</h1><p>Encontre profissionais de confiança para cuidar do seu espaço.</p></div><span class="auth-glint auth-glint-one">✦</span><span class="auth-glint auth-glint-two">✧</span></div>
- <div class="auth-trust-row"><span><i class="fa-solid fa-calendar-check"></i> Agendamento fácil</span><span><i class="fa-solid fa-shield-halved"></i> Profissionais verificados</span><span><i class="fa-solid fa-lock"></i> Acesso seguro</span></div>
- <div class="bg-white rounded-3xl p-5 shadow-2xl auth-form-card">
-  <div class="auth-tabs"><button id="loginTab" class="btn primary" onclick="authMode('login')"><i class="fa-solid fa-user mr-2"></i>Entrar</button><button id="registerTab" class="btn secondary" onclick="authMode('register')"><i class="fa-solid fa-user-plus mr-2"></i>Cadastrar</button></div>
-  <div class="auth-card-intro"><h2 id="authCardTitle">Acesse sua conta</h2><p id="authCardSubtitle">Continue e gerencie seus agendamentos, conversas e pedidos.</p></div>
-  <form id="authForm" onsubmit="handleAuth(event)" class="space-y-3">
-   <div id="registerFields" class="hidden space-y-3">
-    <label class="auth-field-wrap"><i class="fa-solid fa-user"></i><input id="name" class="field" placeholder="Nome completo" autocomplete="name"></label>
-    <select id="type" class="field" onchange="toggleCleanerFields()"><option value="cliente">Sou contratante</option><option value="diarista">Sou profissional diarista</option></select>
-    <div id="cleanerFields" class="hidden space-y-2"><select id="region" class="field"><option>Recreio dos Bandeirantes</option><option>Barra da Tijuca</option><option>Zona Sul</option><option>Zona Oeste</option><option>Zona Norte</option><option>Centro</option><option>Todas as regiões</option></select><input id="price" class="field" type="number" placeholder="Preço base (R$)"><textarea id="bio" class="field" placeholder="Conte um pouco da sua experiência"></textarea></div>
+<div id="auth" class="hidden min-h-screen flex items-center justify-center p-4 auth-screen">
+ <div class="df-national-shell">
+  <header class="df-national-brand">
+   <span class="df-national-logo"><i class="fa-solid fa-house-chimney-user"></i><b class="df-logo-spark">✦</b></span>
+   <span class="df-national-wordmark"><strong>Diarista<span>Fácil</span></strong><small>BRASIL <i class="fa-solid fa-location-dot"></i> CONECTANDO CUIDADO</small></span>
+   <span class="df-national-pill"><i class="fa-solid fa-earth-americas"></i> EXPANSÃO NACIONAL</span>
+  </header>
+  <section class="df-national-hero">
+   <div class="df-hero-copy">
+    <span class="df-hero-eyebrow"><i class="fa-solid fa-sparkles"></i> O cuidado que aproxima</span>
+    <h1>Sua casa merece<br><em>o melhor cuidado.</em></h1>
+    <p>Encontre profissionais de limpeza com praticidade, confiança e carinho. Uma nova forma de cuidar do seu espaço, chegando a todo o Brasil.</p>
+    <div class="df-hero-proof"><span><i class="fa-solid fa-shield-heart"></i> Mais confiança</span><span><i class="fa-solid fa-calendar-check"></i> Mais praticidade</span></div>
    </div>
-   <label class="auth-field-wrap"><i class="fa-regular fa-envelope"></i><input id="email" class="field" type="email" required placeholder="Seu e-mail" autocomplete="email"></label>
-   <label class="auth-field-wrap auth-password-wrap"><i class="fa-solid fa-lock"></i><input id="password" class="field" type="password" minlength="6" required placeholder="Senha (mínimo 6 caracteres)" autocomplete="current-password"><button type="button" class="auth-password-toggle" onclick="toggleAuthPassword()" aria-label="Mostrar ou ocultar senha"><i id="authPasswordEye" class="fa-regular fa-eye"></i></button></label>
-   <div class="auth-form-links"><span><i class="fa-solid fa-shield-halved"></i> Seus dados protegidos</span><button type="button" onclick="forgotPassword()">Esqueci minha senha</button></div>
-   <button id="submitAuth" class="btn primary w-full auth-submit" type="submit"><i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>Entrar</button>
-   <div class="auth-register-hint"><span></span><p>Ainda não tem uma conta?</p><span></span></div>
-   <button type="button" class="auth-create-account" onclick="authMode('register')"><i class="fa-solid fa-user-plus"></i> Criar conta grátis</button>
-  </form>
- </div></div></div>
+   <div class="df-hero-art">
+    <div class="df-map-orbit" aria-hidden="true"><div class="df-map-glow"></div><div class="df-map-shape"><i class="fa-solid fa-map-location-dot"></i><b>BRASIL</b></div><span class="df-city-tag city-rio">RIO DE JANEIRO</span><span class="df-city-tag city-sp">SÃO PAULO</span><span class="df-city-tag city-bh">BELO HORIZONTE</span><span class="df-city-tag city-rec">RECIFE</span><span class="df-orbit-dot"></span></div>
+    <div class="df-mascot-frame"><img class="df-national-mascot" alt="Mascote DiaristaFácil com uniforme verde e luvas amarelas" src="https://raw.githubusercontent.com/diegomamute/diarista-facil/main/assets/diarista-login-hero.webp?v=20261105"><span class="df-mascot-caption"><i class="fa-solid fa-wand-magic-sparkles"></i> Seu lar em boas mãos</span></div>
+   </div>
+   <div class="df-hero-bottom"><span>DO SEU BAIRRO PARA TODO O BRASIL</span><span class="df-stars">✦ ✧ ✦ ✧ ✦</span></div>
+  </section>
+  <div class="df-national-trust"><span><i class="fa-solid fa-calendar-check"></i><b>Agendamento fácil</b></span><span><i class="fa-solid fa-user-check"></i><b>Perfis profissionais</b></span><span><i class="fa-solid fa-lock"></i><b>Acesso seguro</b></span></div>
+  <section class="df-auth-panel">
+   <div class="auth-tabs"><button id="loginTab" class="btn primary" onclick="authMode('login')"><i class="fa-solid fa-user mr-2"></i>Entrar</button><button id="registerTab" class="btn secondary" onclick="authMode('register')"><i class="fa-solid fa-user-plus mr-2"></i>Cadastrar</button></div>
+   <div class="auth-card-intro"><h2 id="authCardTitle">Acesse sua conta</h2><p id="authCardSubtitle">Continue e gerencie seus agendamentos, conversas e pedidos.</p></div>
+   <form id="authForm" onsubmit="handleAuth(event)" class="space-y-3">
+    <div id="registerFields" class="hidden space-y-3">
+     <label class="auth-field-wrap"><i class="fa-solid fa-user"></i><input id="name" class="field" placeholder="Nome completo" autocomplete="name"></label>
+     <select id="type" class="field" onchange="toggleCleanerFields()"><option value="cliente">Sou contratante</option><option value="diarista">Sou profissional diarista</option></select>
+     <div id="cleanerFields" class="hidden space-y-2"><select id="region" class="field"><option>Recreio dos Bandeirantes</option><option>Barra da Tijuca</option><option>Zona Sul</option><option>Zona Oeste</option><option>Zona Norte</option><option>Centro</option><option>Todas as regiões</option></select><input id="price" class="field" type="number" placeholder="Preço base (R$)"><textarea id="bio" class="field" placeholder="Conte um pouco da sua experiência"></textarea></div>
+    </div>
+    <label class="auth-field-wrap"><i class="fa-regular fa-envelope"></i><input id="email" class="field" type="email" required placeholder="Seu e-mail" autocomplete="email"></label>
+    <label class="auth-field-wrap auth-password-wrap"><i class="fa-solid fa-lock"></i><input id="password" class="field" type="password" minlength="6" required placeholder="Senha (mínimo 6 caracteres)" autocomplete="current-password"><button type="button" class="auth-password-toggle" onclick="toggleAuthPassword()" aria-label="Mostrar ou ocultar senha"><i id="authPasswordEye" class="fa-regular fa-eye"></i></button></label>
+    <div class="auth-form-links"><span><i class="fa-solid fa-shield-halved"></i> Seus dados protegidos</span><button type="button" onclick="forgotPassword()">Esqueci minha senha</button></div>
+    <button id="submitAuth" class="btn primary w-full auth-submit" type="submit"><i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>Entrar</button>
+    <div class="auth-register-hint"><span></span><p>Ainda não tem uma conta?</p><span></span></div>
+    <button type="button" class="auth-create-account" onclick="authMode('register')"><i class="fa-solid fa-user-plus"></i> Criar conta grátis</button>
+   </form>
+  </section>
+  <footer class="df-national-footer"><span>DIARISTAFÁCIL BRASIL</span><span>Conectando pessoas. Facilitando rotinas.</span></footer>
+ </div>
+</div>
 <div id="app" class="hidden min-h-screen"><header class="top"><div><div class="brand"><i class="fa-solid fa-wand-magic-sparkles"></i> DiaristaFácil</div><div class="text-xs muted"><i class="fa-solid fa-location-dot"></i> Rio de Janeiro · RJ</div></div><div class="top-actions"><button class="top-profile" onclick="openSection(\'profile\')" aria-label="Abrir perfil"><span class="top-avatar"><i class="fa-solid fa-user"></i></span><span class="top-profile-copy"><b id="userLabel">Conta</b><small id="topRoleLabel">Cliente</small></span></button><button class="top-bell" onclick="showChats()" aria-label="Abrir conversas"><i class="fa-regular fa-bell"></i><span class="top-bell-dot"></span></button></div></header><main class="wrap">
 <section id="homeSection">
 <div id="cleanerReferenceBanner" class="reference-cleaner-banner hidden" aria-label="Painel ilustrado do Diarista Fácil">
@@ -1480,4 +1500,80 @@ function chooseProperty(value){const select=document.getElementById('property');
 .auth-form-card #loginTab.btn.primary,.auth-form-card #registerTab.btn.primary{color:#fff}
 @media(max-width:380px){.cleaner-scene.auth-cleaner-scene{height:230px}.auth-hero-copy{right:10px;width:46%}.auth-hero-copy h1{font-size:18px}.auth-hero-copy p{font-size:11px}.auth-form-card{padding:15px}}
 @media(prefers-reduced-motion:reduce){.auth-glint,.auth-cleaner-scene .cleaner-illustration{animation:none}}
+
+/* ===== Nova entrada nacional DiaristaFácil Brasil ===== */
+.auth-screen{min-height:100svh;padding:24px 16px 34px!important;align-items:flex-start!important;justify-content:center!important;overflow:hidden;background:radial-gradient(ellipse at 12% 8%,#18b887 0,transparent 30%),radial-gradient(ellipse at 92% 32%,#0d9b70 0,transparent 28%),linear-gradient(145deg,#032f27 0%,#075b46 48%,#063d32 100%)!important;position:relative}
+.auth-screen:before,.auth-screen:after{content:"";position:fixed;border:1px solid #d4ffe51c;border-radius:50%;pointer-events:none}
+.auth-screen:before{width:520px;height:520px;right:-230px;top:8%}.auth-screen:after{width:390px;height:390px;left:-230px;bottom:-120px}
+.df-national-shell{width:min(100%,650px);position:relative;z-index:1;margin:auto}
+.df-national-brand{display:flex;align-items:center;gap:13px;padding:4px 5px 18px;color:#fff}
+.df-national-logo{width:58px;height:58px;border-radius:19px;display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#16b981,#087454);border:1px solid #c5ffe477;box-shadow:0 9px 28px #001e1740;font-size:27px}
+.df-logo-spark{position:absolute;right:-5px;top:-8px;color:#ffe16c;font-size:18px}
+.df-national-wordmark{display:flex;flex-direction:column;gap:3px}.df-national-wordmark strong{font-size:clamp(25px,6vw,33px);line-height:1;letter-spacing:-1.5px;font-weight:1000}.df-national-wordmark strong span{color:#c5f34c}.df-national-wordmark small{font-size:9px;letter-spacing:2.2px;color:#c8f5df;font-weight:900}
+.df-national-pill{margin-left:auto;border:1px solid #b7f7d74d;background:#ffffff12;color:#e5fff1;padding:9px 11px;border-radius:99px;font-size:9px;font-weight:900;letter-spacing:.6px;white-space:nowrap}
+.df-national-pill i{color:#ffe16c;margin-right:5px}
+.df-national-hero{position:relative;min-height:290px;padding:30px 27px 23px;border-radius:29px;overflow:hidden;color:white;background:linear-gradient(115deg,#087a58 0%,#07583f 57%,#033d32 100%);border:1px solid #d5ffe45c;box-shadow:0 25px 65px #001c1645;isolation:isolate}
+.df-national-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 44%,#a5f3cc25,transparent 32%),linear-gradient(135deg,#ffffff0c,transparent 55%);z-index:-1}
+.df-hero-copy{position:relative;z-index:4;max-width:57%}
+.df-hero-eyebrow{display:inline-flex;align-items:center;gap:7px;border-radius:99px;padding:8px 12px;background:#ffdc46;color:#174c39;font-size:10px;font-weight:1000;letter-spacing:.5px;box-shadow:0 5px 18px #001b1633}
+.df-hero-copy h1{font-size:clamp(28px,5.5vw,42px);line-height:1.03;letter-spacing:-1.6px;margin:17px 0 11px;font-weight:1000;color:#fff}
+.df-hero-copy h1 em{font-style:normal;color:#d8f66b}
+.df-hero-copy p{font-size:13px;line-height:1.55;color:#dcfced;max-width:330px;margin:0}
+.df-hero-proof{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.df-hero-proof span{font-size:10px;font-weight:800;color:#eafff3;background:#ffffff16;border:1px solid #ffffff27;padding:7px 9px;border-radius:99px}.df-hero-proof i{color:#d9f66e;margin-right:4px}
+.df-hero-art{position:absolute;right:0;top:0;width:49%;height:100%;z-index:2}
+.df-map-orbit{position:absolute;right:6%;top:10%;width:76%;height:70%;border:1px solid #d5ffe426;border-radius:50%;display:grid;place-items:center}
+.df-map-glow{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:#a7f3d51b;filter:blur(18px)}
+.df-map-shape{width:112px;height:125px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;clip-path:polygon(32% 0,48% 8%,62% 4%,70% 18%,87% 24%,80% 39%,100% 52%,78% 64%,73% 80%,56% 84%,46% 100%,30% 84%,17% 78%,21% 61%,4% 49%,19% 35%,15% 20%);background:linear-gradient(145deg,#c7f66d,#18bd85 72%,#07805e);color:#064b39;filter:drop-shadow(0 8px 18px #001d1640)}
+.df-map-shape i{font-size:27px}.df-map-shape b{font-size:9px;letter-spacing:2px}
+.df-city-tag{position:absolute;z-index:2;padding:5px 7px;border-radius:99px;background:#f4fff9;color:#07583f;font-size:8px;font-weight:1000;box-shadow:0 4px 13px #001d1640;white-space:nowrap}
+.city-rio{right:-5%;bottom:13%;background:#ffdf63}.city-sp{left:-8%;top:21%}.city-bh{right:-10%;top:25%}.city-rec{left:-6%;bottom:15%}
+.df-orbit-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#ffdf63;right:13%;top:8%;box-shadow:0 0 0 6px #ffdf6324,0 0 18px #ffdf63}
+.df-mascot-frame{position:absolute;right:2%;bottom:-3px;width:49%;height:52%;z-index:3;display:flex;align-items:flex-end;justify-content:center}
+.df-national-mascot{width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 12px #001c1655);transform-origin:50% 90%;animation:dfMascotWelcome 3s ease-in-out infinite}
+.df-mascot-caption{position:absolute;bottom:9px;right:0;padding:7px 10px;border-radius:99px;background:#fff;color:#087452;font-size:9px;font-weight:1000;box-shadow:0 5px 15px #001d1640}
+.df-mascot-caption i{color:#e2ad22;margin-right:4px}
+@keyframes dfMascotWelcome{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-5px) rotate(.6deg)}}
+.df-hero-bottom{position:absolute;left:27px;right:27px;bottom:15px;display:flex;align-items:center;justify-content:space-between;z-index:5;pointer-events:none}
+.df-hero-bottom>span:first-child{font-size:8px;letter-spacing:1.7px;font-weight:1000;color:#c8f6dc}.df-stars{color:#ffe16c;letter-spacing:5px;font-size:12px}
+.df-national-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:13px 0 16px;padding:14px 10px;border-radius:21px;background:#ffffff12;border:1px solid #d5ffe43b;color:#effff6}
+.df-national-trust span{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px}.df-national-trust i{font-size:17px;color:#baf1d4}.df-national-trust b{font-size:10px}
+.df-auth-panel{padding:19px 21px 20px;border-radius:29px;background:linear-gradient(160deg,#fff 0%,#f5fff9 100%);box-shadow:0 22px 55px #001b1640;border:1px solid #ffffff}
+.df-auth-panel .auth-tabs{padding:5px;background:#eaf7ef;border-radius:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.df-auth-panel .auth-tabs .btn{border-radius:14px;padding:14px 10px;font-size:14px;box-shadow:none}
+.df-auth-panel .auth-tabs .btn.primary{background:linear-gradient(120deg,#13a875,#087452);box-shadow:0 8px 18px #07865f35}
+.df-auth-panel .auth-card-intro{text-align:center;margin:20px 0 16px}
+.df-auth-panel .auth-card-intro h2{font-size:26px;line-height:1.1;letter-spacing:-1px;color:#075b46;font-weight:1000;margin:0 0 7px}
+.df-auth-panel .auth-card-intro p{font-size:12px;line-height:1.5;color:#6c8178;margin:0}
+.df-auth-panel .auth-field-wrap{position:relative;display:block}
+.df-auth-panel .auth-field-wrap>i{position:absolute;z-index:2;left:15px;top:50%;transform:translateY(-50%);color:#07865f;font-size:16px}
+.df-auth-panel .field{height:55px;padding:13px 44px!important;border:1.5px solid #d3eade!important;border-radius:15px!important;background:#f8fcf9!important;color:#173d33!important;font-size:14px}
+.df-auth-panel .field:focus{border-color:#13a875!important;box-shadow:0 0 0 4px #13a87520!important;outline:0}
+.df-auth-panel .auth-password-toggle{position:absolute;right:8px;top:7px;width:41px;height:41px;border:0;border-radius:12px;background:#e8f7ed;color:#087452}
+.df-auth-panel .auth-form-links{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:2px 1px 13px;font-size:10px;color:#71877d}
+.df-auth-panel .auth-form-links span{white-space:nowrap}.df-auth-panel .auth-form-links i{color:#07865f;margin-right:4px}
+.df-auth-panel .auth-form-links button{border:0;background:none;color:#087452;font-weight:900;font-size:11px}
+.df-auth-panel .auth-submit{height:53px;border-radius:15px!important;background:linear-gradient(115deg,#13a875,#087452)!important;box-shadow:0 10px 20px #07865f35;font-size:15px}
+.df-auth-panel .auth-register-hint{display:flex;align-items:center;gap:9px;margin:15px 0 9px;color:#8a9a92;font-size:10px}.df-auth-panel .auth-register-hint span{height:1px;background:#dcebe2;flex:1}.df-auth-panel .auth-register-hint p{margin:0}
+.df-auth-panel .auth-create-account{width:100%;padding:11px;border:1.5px solid #cfe8d9;border-radius:13px;background:#f4fbf6;color:#087452;font-weight:900;font-size:12px}
+.df-auth-panel .auth-create-account i{margin-right:6px}
+.df-national-footer{display:flex;justify-content:space-between;gap:10px;padding:15px 5px 0;color:#c8f6dc;font-size:9px}.df-national-footer span:first-child{font-weight:1000;letter-spacing:1.3px}
+@media(max-width:560px){
+ .auth-screen{padding:16px 12px 26px!important}
+ .df-national-brand{gap:10px;padding-bottom:13px}.df-national-logo{width:49px;height:49px;border-radius:16px;font-size:23px}
+ .df-national-wordmark strong{font-size:25px}.df-national-wordmark small{font-size:7px;letter-spacing:1.35px}
+ .df-national-pill{font-size:7px;padding:7px 8px;letter-spacing:0}
+ .df-national-hero{min-height:300px;padding:22px 17px 24px;border-radius:23px}
+ .df-hero-copy{max-width:63%}.df-hero-copy h1{font-size:clamp(25px,7vw,34px);margin:15px 0 9px}.df-hero-copy p{font-size:11px;line-height:1.48;max-width:225px}
+ .df-hero-eyebrow{font-size:8px;padding:7px 9px}.df-hero-proof{gap:5px;margin-top:13px}.df-hero-proof span{font-size:8px;padding:6px 7px}
+ .df-hero-art{width:48%}.df-map-orbit{width:87%;right:0;top:7%;height:65%}.df-map-shape{width:84px;height:100px}.df-map-shape i{font-size:21px}.df-map-shape b{font-size:7px}
+ .df-city-tag{font-size:6px;padding:4px 5px}.city-sp{left:-10%}.city-bh{right:-12%}.city-rec{left:-10%}.city-rio{right:-7%}
+ .df-mascot-frame{width:58%;height:43%;right:-2%}.df-mascot-caption{font-size:7px;padding:6px 7px;bottom:7px}
+ .df-hero-bottom{left:17px;right:17px;bottom:11px}.df-hero-bottom>span:first-child{font-size:6px;letter-spacing:1px}.df-stars{font-size:9px;letter-spacing:3px}
+ .df-national-trust{gap:3px;padding:12px 4px;margin:10px 0 13px;border-radius:17px}.df-national-trust span{flex-direction:column;gap:5px;text-align:center}.df-national-trust i{font-size:16px}.df-national-trust b{font-size:8px}
+ .df-auth-panel{padding:15px 13px 16px;border-radius:23px}.df-auth-panel .auth-tabs .btn{padding:12px 7px;font-size:12px}.df-auth-panel .auth-card-intro{margin:17px 0 14px}.df-auth-panel .auth-card-intro h2{font-size:23px}
+ .df-national-footer{font-size:7px;padding-top:12px}
+}
+@media(max-width:370px){.df-national-pill{display:none}.df-hero-copy{max-width:66%}.df-hero-copy h1{font-size:25px}.df-hero-copy p{font-size:10px}.df-national-hero{min-height:290px}}
+@media(prefers-reduced-motion:reduce){.df-national-mascot{animation:none}}
+
 </style>
