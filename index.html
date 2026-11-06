@@ -1007,6 +1007,127 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
 }
 </style>
 
+
+<style id="df-login-polish-nov2026">
+/* Acabamento fino da tela de acesso: preservar arte, autenticação e integrações */
+#auth.auth-screen{
+  min-height:100svh!important;height:auto!important;overflow-x:hidden!important;overflow-y:visible!important;
+  padding:calc(22px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))!important;
+  background:
+    radial-gradient(ellipse at 8% 3%,rgba(39,211,137,.28),transparent 32%),
+    radial-gradient(ellipse at 94% 55%,rgba(12,155,105,.18),transparent 30%),
+    linear-gradient(145deg,#043b30 0%,#066548 52%,#034333 100%)!important;
+}
+#auth .df-clean-auth{width:100%!important;max-width:560px!important;margin:0 auto!important}
+#auth .df-clean-brand{margin:0 2px 16px!important;align-items:center!important}
+#auth .df-clean-logo{box-shadow:0 0 0 5px rgba(205,244,49,.12),0 12px 25px rgba(0,25,18,.3)!important}
+#auth .df-clean-word strong{filter:drop-shadow(0 2px 7px rgba(0,0,0,.14))}
+#auth .df-rio-hero{
+  box-shadow:0 22px 48px rgba(0,25,18,.25),inset 0 1px 0 rgba(255,255,255,.25)!important;
+}
+#auth .df-clean-trust{
+  margin:14px 0 16px!important;padding:13px 8px!important;gap:5px!important;
+  border-radius:20px!important;box-shadow:0 10px 24px rgba(0,25,18,.18),inset 0 1px 0 rgba(255,255,255,.2)!important;
+}
+#auth .df-clean-trust span{font-size:clamp(9px,2.5vw,12px)!important;letter-spacing:-.15px}
+#auth .df-clean-trust i{filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+#auth .df-clean-panel{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  padding:22px 22px 23px!important;border:1px solid rgba(255,255,255,.9)!important;
+  border-radius:30px!important;
+  background:linear-gradient(155deg,#fff 0%,#fbfffc 62%,#f0fbf4 100%)!important;
+  box-shadow:0 24px 58px rgba(0,24,17,.25),inset 0 1px 0 #fff!important;
+}
+#auth .df-clean-panel:before{
+  content:"";position:absolute;z-index:-1;left:-55px;top:-75px;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(180,240,204,.25),transparent 70%);
+  pointer-events:none;
+}
+#auth .df-clean-panel .auth-tabs{
+  padding:5px!important;gap:8px!important;border:1px solid #e1f0e6!important;
+  border-radius:19px!important;background:linear-gradient(120deg,#edf8f1,#f7fbf8)!important;
+}
+#auth .df-clean-panel .auth-tabs .btn{
+  min-height:54px!important;border-radius:15px!important;font-size:15px!important;font-weight:900!important;
+}
+#auth .df-clean-panel .auth-tabs .btn.primary{
+  background:linear-gradient(115deg,#14b86e,#08744c)!important;
+  box-shadow:0 8px 17px rgba(8,116,76,.22),inset 0 1px 0 rgba(255,255,255,.22)!important;
+}
+#auth .df-clean-panel .auth-tabs .btn.secondary{
+  background:#f8fcf9!important;border:1px solid #dcebe2!important;color:#147653!important;
+}
+#auth .df-clean-panel .auth-card-intro{margin:22px 0 19px!important}
+#auth .df-clean-panel .auth-card-intro h2{
+  font-size:clamp(24px,6vw,29px)!important;letter-spacing:-1.1px!important;
+  color:#07583f!important;
+}
+#auth .df-clean-panel .auth-card-intro p{font-size:13px!important;color:#74877e!important}
+#auth .df-clean-panel form{display:flex!important;flex-direction:column!important;gap:13px!important}
+#auth .df-clean-panel .field{
+  height:59px!important;border:1.5px solid #d8e9df!important;border-radius:17px!important;
+  background:linear-gradient(180deg,#fff,#f9fcfa)!important;font-size:15px!important;
+  box-shadow:0 3px 10px rgba(7,91,70,.035)!important;
+}
+#auth .df-clean-panel .field:focus{
+  border-color:#16a875!important;background:#fff!important;
+  box-shadow:0 0 0 4px rgba(22,168,117,.12)!important;
+}
+#auth .df-clean-panel .auth-field-wrap>i{font-size:17px!important;color:#13865e!important}
+#auth .df-clean-panel .auth-password-toggle{
+  width:43px!important;height:43px!important;right:7px!important;top:8px!important;
+  border:1px solid #e0eee5!important;border-radius:13px!important;background:#eff8f2!important;
+}
+#auth .df-clean-panel .auth-form-links{margin:0 2px 2px!important;font-size:11px!important}
+#auth .df-clean-panel .auth-form-links button{font-size:11px!important;text-underline-offset:3px}
+#auth .df-clean-panel .auth-submit{
+  min-height:59px!important;border-radius:18px!important;font-size:17px!important;
+  background:linear-gradient(105deg,#16b86d 0%,#07804f 100%)!important;
+  box-shadow:0 10px 21px rgba(7,128,79,.22),inset 0 1px 0 rgba(255,255,255,.2)!important;
+}
+#auth .df-clean-panel .auth-register-hint{margin:5px 0 1px!important;font-size:11px!important}
+#auth .df-clean-panel .auth-create-account{
+  min-height:52px!important;padding:13px!important;border-radius:16px!important;
+  background:linear-gradient(110deg,#f3fbf5,#f9fcf9)!important;border:1px solid #d7eade!important;
+  color:#11724f!important;font-size:13px!important;
+}
+#auth .df-clean-footer{
+  display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important;
+  margin:14px 0 0!important;padding:17px 12px 5px!important;
+  border:0!important;border-top:1px solid rgba(222,255,235,.2)!important;
+  border-radius:0!important;background:transparent!important;text-align:center!important;
+  color:#d9f6e6!important;font-size:10px!important;letter-spacing:1.5px!important;
+}
+#auth .df-clean-footer:before{content:"RIO DE JANEIRO  •  DIARISTAFÁCIL"!important;display:block!important;margin:0 0 2px!important;font-size:9px!important;letter-spacing:2px!important;color:#d7f36a!important}
+#auth .df-clean-footer span{font-size:11px!important;color:#e8fff1!important}
+@media(max-width:560px){
+  #auth.auth-screen{padding:calc(17px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom))!important}
+  #auth .df-clean-brand{gap:10px!important;margin-bottom:13px!important}
+  #auth .df-clean-logo{width:54px!important;height:54px!important;border-radius:17px!important}
+  #auth .df-clean-word strong{font-size:clamp(23px,6.4vw,30px)!important}
+  #auth .df-clean-word small{font-size:8px!important;letter-spacing:1.2px!important}
+  #auth .df-clean-national{font-size:8px!important;padding:8px 9px!important}
+  #auth .df-rio-hero{height:360px!important;min-height:360px!important;border-radius:24px!important}
+  #auth .df-clean-trust{margin:12px 0 14px!important;padding:11px 4px!important}
+  #auth .df-clean-trust span{font-size:8px!important;gap:4px!important}
+  #auth .df-clean-trust i{font-size:16px!important}
+  #auth .df-clean-panel{padding:17px 14px 18px!important;border-radius:25px!important}
+  #auth .df-clean-panel .auth-tabs .btn{min-height:51px!important;padding:10px 5px!important;font-size:13px!important}
+  #auth .df-clean-panel .auth-card-intro{margin:19px 0 16px!important}
+  #auth .df-clean-panel .auth-card-intro h2{font-size:24px!important}
+  #auth .df-clean-panel .auth-card-intro p{font-size:12px!important}
+  #auth .df-clean-panel .field{height:57px!important;font-size:14px!important}
+  #auth .df-clean-panel .auth-submit{min-height:57px!important;font-size:16px!important}
+}
+@media(max-width:380px){
+  #auth .df-clean-national{font-size:7px!important;padding:7px 7px!important}
+  #auth .df-clean-panel{padding:15px 12px 16px!important}
+  #auth .df-clean-panel .auth-tabs .btn{font-size:12px!important}
+  #auth .df-clean-trust span{font-size:7px!important}
+}
+@media(prefers-reduced-motion:reduce){#auth .df-clean-panel *,#auth .df-clean-trust{transition:none!important;animation:none!important}}
+</style>
+
 </head><body>
 <section id="locationGate" aria-label="Escolha sua localização">
  <div class="location-shell"><div class="location-card">
