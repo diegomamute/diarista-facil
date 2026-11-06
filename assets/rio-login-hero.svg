@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Profissional diarista em primeiro plano e paisagem do Rio de Janeiro com o Cristo Redentor ao fundo">
+<defs>
+ <linearGradient id="sky" x2="1" y2="1"><stop stop-color="#064b38"/><stop offset=".48" stop-color="#087d70"/><stop offset="1" stop-color="#159fd0"/></linearGradient>
+ <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#56d8d2"/><stop offset="1" stop-color="#087c83"/></linearGradient>
+ <linearGradient id="hill" x2=".7" y2="1"><stop stop-color="#63d978"/><stop offset="1" stop-color="#075b42"/></linearGradient>
+ <linearGradient id="apron" x2="1" y2="1"><stop stop-color="#078d50"/><stop offset="1" stop-color="#034d36"/></linearGradient>
+ <linearGradient id="skin" x2=".8" y2="1"><stop stop-color="#ffd4ad"/><stop offset="1" stop-color="#c97952"/></linearGradient>
+ <linearGradient id="hair" x2=".8" y2="1"><stop stop-color="#392019"/><stop offset=".55" stop-color="#17121a"/><stop offset="1" stop-color="#68402b"/></linearGradient>
+ <linearGradient id="glove" x2="1" y2="1"><stop stop-color="#fff34b"/><stop offset="1" stop-color="#e8ad13"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#fffbd0"/><stop offset="1" stop-color="#fffbd0" stop-opacity="0"/></radialGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<rect width="1200" height="700" fill="url(#sky)"/>
+<circle cx="1010" cy="150" r="190" fill="url(#sun)"/>
+<g fill="#fff" opacity=".23"><path d="M650 120q55-55 112 0 55-38 94 13H630z"/><path d="M910 245q38-38 76 0 42-30 72 9H890z"/></g>
+<!-- baía e morros -->
+<path d="M0 410Q145 335 270 392T520 382Q660 300 790 355T1200 330V700H0Z" fill="url(#sea)"/>
+<path d="M390 420Q500 230 660 270Q760 290 845 430Z" fill="url(#hill)"/>
+<path d="M620 410Q745 145 930 175Q1080 195 1200 380V700H620Z" fill="url(#hill)"/>
+<path d="M730 265q85-88 196-90q88 16 150 82" fill="none" stroke="#9ae99b" stroke-width="12" opacity=".45"/>
+<path d="M0 478q190-65 360 0t350-6q220-52 490 4" fill="none" stroke="#d9fff0" stroke-width="8" opacity=".3"/>
+<!-- cidade -->
+<g fill="#f8f3d9" opacity=".94">
+ <path d="M540 440h34v-78h34v78h24v-56h32v56h22v-94h39v94h20v-67h27v67h25v-47h32v47z"/>
+ <path d="M835 442h24v-80h22v80h18v-110h29v110h17v-67h28v67h19v-91h35v91h19v-58h28v58h28v-78h35v78z"/>
+</g>
+<g fill="#72b8a0" opacity=".75"><path d="M555 382h8v13h-8zm55 12h8v13h-8zm79-22h8v13h-8zm100 17h8v13h-8zm104-26h8v13h-8zm80 21h8v13h-8z"/></g>
+<!-- Cristo no Corcovado -->
+<g transform="translate(1035 100)">
+ <path d="M-102 220Q-50 160 0 170Q60 160 115 222" fill="none" stroke="#e1f4c6" stroke-width="5" opacity=".55"/>
+ <ellipse cx="0" cy="222" rx="78" ry="13" fill="#063f34" opacity=".28"/>
+ <g fill="#fffdf0" stroke="#245e50" stroke-width="5" stroke-linejoin="round">
+  <path d="M-9 45L-105 12L-111 25L-14 72L-15 133L-45 165L-43 179L0 168L43 179L45 165L15 133L14 72L111 25L105 12L9 45L9 16L20 5L9-6L0-31L-9-6L-20 5L-9 16Z"/>
+  <path d="M-43 177Q0 164 43 177L61 213H-61Z" fill="#e8eee1"/>
+ </g>
+ <path d="M-12 70h24v64h-24z" fill="#d9e8dd"/>
+</g>
+<!-- primeiro plano sombra -->
+<ellipse cx="285" cy="676" rx="290" ry="30" fill="#002e24" opacity=".4" filter="url(#shadow)"/>
+<!-- cabelo atrás -->
+<path d="M105 236Q75 130 163 70Q240 8 332 76Q416 137 365 281L338 390H111Z" fill="url(#hair)"/>
+<path d="M112 182Q78 112 156 57Q230 7 315 57Q372 91 380 163Q319 102 269 115Q204 91 112 182Z" fill="#24151a"/>
+<!-- pescoço e rosto -->
+<path d="M198 247Q195 319 223 347Q250 375 294 350Q327 326 319 239Z" fill="url(#skin)"/>
+<ellipse cx="260" cy="203" rx="112" ry="137" fill="url(#skin)"/>
+<path d="M149 187Q133 73 247 57Q360 58 371 167Q331 125 294 119Q226 145 157 202Z" fill="url(#hair)"/>
+<path d="M151 164Q115 226 144 295Q112 279 103 221Q92 135 145 89Q121 143 151 164Z" fill="#24151a"/>
+<path d="M341 139Q397 208 356 294Q390 275 395 214Q399 139 354 91Z" fill="#1a1218"/>
+<!-- orelhas -->
+<ellipse cx="151" cy="222" rx="16" ry="26" fill="#d9916b"/><ellipse cx="365" cy="220" rx="15" ry="25" fill="#d9916b"/>
+<!-- rosto -->
+<path d="M199 210q22-15 42 0M286 208q23-14 43 1" fill="none" stroke="#56352c" stroke-width="8" stroke-linecap="round"/>
+<path d="M208 226q13 12 27 0M297 225q13 12 27 0" fill="none" stroke="#2d2725" stroke-width="5" stroke-linecap="round"/>
+<circle cx="223" cy="226" r="5" fill="#241d1a"/><circle cx="311" cy="225" r="5" fill="#241d1a"/>
+<path d="M269 227q-10 29 4 35" fill="none" stroke="#b96e54" stroke-width="5" stroke-linecap="round"/>
+<path d="M231 281Q270 318 315 278Q300 330 264 326Q239 318 231 281Z" fill="#a8323a"/>
+<path d="M244 286Q273 297 304 285Q282 311 255 302Z" fill="#fffdf5"/>
+<path d="M184 252q-8 15-1 29M335 251q8 15 0 29" fill="none" stroke="#e9a17f" stroke-width="5" stroke-linecap="round"/>
+<!-- brinco -->
+<circle cx="145" cy="254" r="8" fill="#f7d45a"/><circle cx="371" cy="251" r="8" fill="#f7d45a"/>
+<!-- corpo camisa -->
+<path d="M144 355Q194 328 226 339L261 390L301 338Q353 331 393 367Q441 419 459 700H56Q69 443 144 355Z" fill="#fffdf4"/>
+<path d="M211 343L260 397L307 343L343 370L317 700H174L150 371Z" fill="url(#apron)"/>
+<path d="M209 345Q180 404 166 455M309 345Q353 410 369 455" fill="none" stroke="#d5f7df" stroke-width="17" stroke-linecap="round"/>
+<path d="M230 478h62v57h-62z" rx="12" fill="#05623e" stroke="#9be5a6" stroke-width="4"/>
+<path d="M246 503l14-14 14 14v18h-28z" fill="#f4fff0"/><path d="M255 517h10v13h-10z" fill="#07804c"/>
+<!-- braço esquerdo e luva segurando spray -->
+<path d="M115 389Q75 435 52 512L32 585Q28 614 54 626Q80 636 95 604L145 493L177 424Z" fill="url(#skin)"/>
+<path d="M34 567Q3 554 0 587Q-3 628 31 644Q65 662 91 629L104 598Q79 573 55 574Z" fill="url(#glove)"/>
+<g transform="translate(18 438) rotate(-9)">
+ <path d="M18 43h68l-5 174q-2 17-18 17H38q-16 0-17-17Z" fill="#e9fff3" fill-opacity=".88" stroke="#d2f6e4" stroke-width="6"/>
+ <path d="M22 112h60v94H22z" fill="#16b86c" opacity=".9"/>
+ <path d="M39 42V20h29v22M53 20V4h48v12H68" fill="none" stroke="#f4fff7" stroke-width="11" stroke-linejoin="round"/>
+ <path d="M82 10h33v10H82" fill="none" stroke="#f5fff5" stroke-width="9" stroke-linecap="round"/>
+ <path d="M100 8q22-12 36-4" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+</g>
+<!-- braço direito com pano -->
+<path d="M386 389Q426 421 449 487L484 565Q497 591 476 610Q453 627 432 600L372 511L343 429Z" fill="url(#skin)"/>
+<path d="M447 559Q472 535 495 558Q522 583 500 619Q479 655 443 639Q420 626 425 601Z" fill="url(#glove)"/>
+<path d="M403 535Q456 514 496 550L476 638Q444 653 406 621Q388 589 403 535Z" fill="#21c86f" stroke="#b2f7b5" stroke-width="5"/>
+<path d="M419 551q34 13 63 5" fill="none" stroke="#d8ffe0" stroke-width="5" opacity=".7"/>
+<!-- brilhos -->
+<g fill="#ffe84a"><path d="M470 115l10 25 25 10-25 10-10 25-10-25-25-10 25-10z"/><path d="M548 260l7 17 17 7-17 7-7 17-7-17-17-7 17-7z"/></g>
+<rect width="1200" height="700" fill="url(#sky)" opacity=".08"/>
+</svg>

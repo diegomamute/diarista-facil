@@ -974,6 +974,39 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
 @media(prefers-reduced-motion:reduce){#auth .df-rio-cleaner img{animation:none!important}}
 </style>
 
+
+<style id="df-rio-hero-art-final">
+/* Arte nova da entrada: diarista em destaque + baía e Cristo; formulário e Supabase preservados */
+#auth .df-rio-hero{
+ position:relative!important;height:420px!important;min-height:420px!important;
+ overflow:hidden!important;background:#07583f!important;border:1px solid #b8ef8c!important;
+}
+#auth .df-rio-scene{position:absolute!important;inset:0!important;z-index:0!important;overflow:hidden!important}
+#auth .df-rio-art{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;opacity:1!important}
+#auth .df-rio-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,#034d3a20 43%,#034d3a9c 100%);pointer-events:none}
+#auth .df-rio-cleaner{display:none!important}
+#auth .df-rio-copy{position:relative!important;z-index:2!important;width:53%!important;margin-left:auto!important;padding:44px 18px 122px 0!important}
+#auth .df-rio-copy .df-clean-kicker{display:inline-flex!important}
+#auth .df-rio-copy h1{font-size:clamp(29px,7vw,42px)!important;line-height:1.02!important}
+#auth .df-rio-copy h1 strong{color:#ffed38!important}
+#auth .df-rio-copy p{font-size:clamp(12px,2.8vw,15px)!important;line-height:1.45!important;max-width:245px!important}
+#auth .df-rio-spark{z-index:3!important}
+#auth .df-clean-trust{background:linear-gradient(100deg,#004e2e,#008044)!important;border:2px solid #d7f52e!important;border-radius:22px!important}
+#auth .df-clean-trust span{font-size:clamp(9px,2.4vw,12px)!important}
+@media(max-width:560px){
+ #auth .df-rio-hero{height:360px!important;min-height:360px!important}
+ #auth .df-rio-copy{width:52%!important;padding:32px 12px 110px 0!important}
+ #auth .df-rio-copy h1{font-size:clamp(25px,7.1vw,34px)!important}
+ #auth .df-rio-copy p{font-size:11px!important}
+}
+@media(max-width:380px){
+ #auth .df-rio-hero{height:340px!important;min-height:340px!important}
+ #auth .df-rio-copy{width:53%!important;padding-top:28px!important}
+ #auth .df-rio-copy h1{font-size:25px!important}
+ #auth .df-rio-copy p{font-size:10px!important}
+}
+</style>
+
 </head><body>
 <section id="locationGate" aria-label="Escolha sua localização">
  <div class="location-shell"><div class="location-card">
@@ -997,25 +1030,7 @@ button:focus-visible,[role="button"]:focus-visible,a:focus-visible{
   </header>
   <section class="df-rio-hero">
    <div class="df-rio-scene" aria-hidden="true">
-    <div class="df-rio-sky"></div><div class="df-rio-sun"></div>
-    <svg class="df-rio-landscape" viewBox="0 0 700 330" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Paisagem ilustrada do Rio de Janeiro com o Cristo Redentor">
-     <defs><linearGradient id="rioSea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#39c9c0"/><stop offset="1" stop-color="#087e77"/></linearGradient><linearGradient id="rioHill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5bd17c"/><stop offset="1" stop-color="#075b43"/></linearGradient></defs>
-     <path d="M0 218 Q90 175 165 210 T330 200 Q420 165 510 205 T700 185 V330 H0Z" fill="url(#rioSea)"/>
-     <path d="M0 214 Q90 184 160 205 Q210 222 270 196 Q320 171 365 190 L405 215 Q300 230 210 226 Q100 238 0 230Z" fill="#e5d69a" opacity=".8"/>
-     <path d="M190 225 Q235 130 310 146 Q355 150 390 218Z" fill="url(#rioHill)"/>
-     <path d="M380 224 Q435 82 520 95 Q610 110 700 213Z" fill="url(#rioHill)"/>
-     <path d="M455 146 Q493 105 520 95 Q550 101 580 130" fill="none" stroke="#a3e69b" stroke-width="5" opacity=".55"/>
-     <path d="M0 236 L0 220 18 216 18 204 31 204 31 218 46 218 46 196 60 196 60 216 75 216 75 202 91 202 91 225 108 225 108 210 123 210 123 230 145 230 145 212 160 212 160 232 180 232 180 220 195 220 195 240Z" fill="#d7f4dc" opacity=".82"/>
-     <g fill="#f7f5d9" opacity=".9"><path d="M15 220h10v-20H15zM38 220h9v-27h-9zM65 221h11v-17H65zM95 226h10v-23H95zM130 230h12v-28h-12z"/></g>
-     <path d="M490 115 Q500 88 518 81 Q540 90 550 117" fill="none" stroke="#2d7b4b" stroke-width="3"/>
-     <path d="M503 112 L508 87 L514 77 L520 88 L526 113Z" fill="#e8b96a"/>
-     <g transform="translate(535 16)" fill="#f7fff7" stroke="#075b46" stroke-width="2" stroke-linejoin="round">
-      <path d="M-4 47 L-35 36 L-37 42 L-7 57 L-6 78 L-20 92 L-19 99 L0 94 L19 99 L20 92 L6 78 L7 57 L37 42 L35 36 L4 47 L4 24 L9 18 L4 12 L0 0 L-4 12 L-9 18 L-4 24Z"/>
-      <path d="M-15 101 Q0 94 15 101 L22 117 L-22 117Z" fill="#d6e8d8"/>
-     </g>
-     <path d="M0 255 Q140 237 280 252 T560 250 T700 244" fill="none" stroke="#b9f2db" stroke-width="3" opacity=".6"/>
-    </svg>
-    <div class="df-rio-cleaner"><img src="assets/diarista-login-hero.webp?v=20261105b" alt="Ilustração de profissional diarista"></div>
+    <img class="df-rio-art" src="assets/rio-login-hero.svg?v=20261106c" alt="">
    </div>
    <div class="df-rio-copy">
     <span class="df-clean-kicker">RIO DE JANEIRO</span>
